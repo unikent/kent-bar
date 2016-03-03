@@ -1,7 +1,8 @@
 var generateLocalSettings = function (content) {
     "use strict";
+    /*jslint stupid: true */
     var fs = require('fs'),
-        settings = fs.readFile('local_env.json', 'utf8');
+        settings = fs.readFileSync('local_env.json', 'utf8');
     return content.replace(/##local_settings##/g, '<script> window.KENT = { settings: ' + settings + '}; </script>');
 };
 
