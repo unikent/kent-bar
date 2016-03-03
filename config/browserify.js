@@ -3,7 +3,7 @@ var hbsfy = require('hbsfy');
 module.exports = {
     dev: {
         options: {
-            ignore: ['jquery'],
+            ignore: ['jquery', 'underscore'],
             transform: [
                 hbsfy,
                 ['aliasify', {
@@ -24,7 +24,7 @@ module.exports = {
     },
     test: {
         options: {
-            ignore: ['jquery'],
+            ignore: ['jquery', 'underscore'],
             transform: [
                 hbsfy,
                 ['aliasify', {
@@ -45,7 +45,7 @@ module.exports = {
     },
     deploy: {
         options: {
-            ignore: ['jquery'],
+            ignore: ['jquery', 'underscore'],
             transform: [
                 hbsfy,
                 ['aliasify', {
