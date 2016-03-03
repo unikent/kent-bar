@@ -3,6 +3,7 @@ node_js:
   - "4.1"
 before_install:
   - npm install -g grunt-cli
+  - npm install -g phantomjs-prebuilt
   - mv travis_env.json local_env.json
 install: npm install
 script: npm test

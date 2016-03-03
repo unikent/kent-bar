@@ -32,7 +32,7 @@ module.exports = {
                         'backbone': 'exoskeleton'
                     },
                     global: true,
-                    verbose: true
+                    verbose: false
                 }]
             ],
             browserifyOptions: {
