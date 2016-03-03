@@ -4,6 +4,8 @@ node_js:
 before_install:
   - npm install -g grunt-cli
   - npm install -g phantomjs-prebuilt
-  - mv travis_env.json local_env.json
+  - cp travis_env.json local_env.json
 install: npm install
+before_script:
+  - grunt compile-test
 script: npm test
