@@ -9,25 +9,23 @@ var app = {
     init: function () {
         "use strict";
 
-		var container = window.KENT.kentbar.config.target;
-		console.log(container);
+        var container = window.KENT.kentbar.config.target;
 
-		document.addEventListener('DOMContentLoaded', function () {
-			if (container === false) {
-				console.log('there');
-				var barEl = document.createElement('div');
-				barEl.id = "kentBar";
-				document.body.insertBefore(barEl, document.body.childNodes[0]);
-				container = '#kentBar'
-			}
+        document.addEventListener('DOMContentLoaded', function () {
+            var bar, barEl;
 
-			console.log(container);
+            if (container === false) {
+                barEl = document.createElement('div');
+                barEl.id = "kentBar";
+                document.body.insertBefore(barEl, document.body.childNodes[0]);
+                container = '#kentBar';
+            }
 
-			var bar = new Bar({el:container});
-			bar.render();
+            bar = new Bar({el: container});
+            bar.render();
 
-			Backbone.history.start();
-		});
+            Backbone.history.start();
+        });
     }
 };
 
@@ -35,13 +33,13 @@ window.KENT  = window.KENT || {};
 window.KENT.kentbar  = window.KENT.kentbar || {};
 
 window.KENT.kentbar.config = window.KENT.kentbar.config || {
-	target: false,
-	links: [
-		'student',
-		'staff',
-		'departments',
-		'alumni'
-	]
+    target: false,
+    links: [
+        'student',
+        'staff',
+        'departments',
+        'alumni'
+    ]
 };
 window.KENT.kentbar.app = app;
 

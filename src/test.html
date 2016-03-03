@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" media="all" href="../node_modules/mocha/mocha.css">
+        <link rel="stylesheet" href="../build/test/main.css">
+        <title>Unit Testing</title>
+    </head>
+    <body>
+    <div id="mocha">
+        <h1>Unit Testing</h1>
+    </div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+    <!-- Init mocha framework -->
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script type="text/javascript">mocha.setup('bdd');</script>
+	##local_settings##
+    <script type="text/javascript" src="../build/test/app.js"></script>
+	<script type="text/javascript" src="/testem.js"></script>
+    <script type="text/javascript">
+        mocha.run();
+    </script>
+</html>

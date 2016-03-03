@@ -3,17 +3,17 @@ var hbsfy = require('hbsfy');
 module.exports = {
     dev: {
         options: {
-			ignore:['jquery'],
+            ignore: ['jquery'],
             transform: [
-				hbsfy,
-				['aliasify', {
-					aliases: {
-						'backbone': 'exoskeleton'
-					},
-					global: true,
-					verbose: true
-				}]
-			],
+                hbsfy,
+                ['aliasify', {
+                    aliases: {
+                        'backbone': 'exoskeleton'
+                    },
+                    global: true,
+                    verbose: true
+                }]
+            ],
             browserifyOptions: {
                 debug: true
             }
@@ -24,17 +24,17 @@ module.exports = {
     },
     test: {
         options: {
-			ignore:['jquery'],
-			transform: [
-				hbsfy,
-				['aliasify', {
-					aliases: {
-						'backbone': 'exoskeleton'
-					},
-					global: true,
-					verbose: true
-				}]
-			],
+            ignore: ['jquery'],
+            transform: [
+                hbsfy,
+                ['aliasify', {
+                    aliases: {
+                        'backbone': 'exoskeleton'
+                    },
+                    global: true,
+                    verbose: true
+                }]
+            ],
             browserifyOptions: {
                 debug: true
             }
@@ -45,17 +45,17 @@ module.exports = {
     },
     deploy: {
         options: {
-			ignore:['jquery'],
-			transform: [
-				hbsfy,
-				['aliasify', {
-					aliases: {
-						'backbone': 'exoskeleton'
-					},
-					global: true,
-					verbose: true
-				}]
-			]
+            ignore: ['jquery'],
+            transform: [
+                hbsfy,
+                ['aliasify', {
+                    aliases: {
+                        'backbone': 'exoskeleton'
+                    },
+                    global: true,
+                    verbose: true
+                }]
+            ]
         },
         files: {
             "build/deploy/app.js": ['src/js/app.js']
