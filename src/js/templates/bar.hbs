@@ -1,3 +1,16 @@
-<a class="navbar-brand kf-kent-horizontal" href="/" title="The University of Kent" ><span class="sr-only">The University of Kent</span></a>
-<span class="tag-line">The UK's European university</span>
-<nav id="audience-nav-links"></nav>
+<a class="navbar-brand kf-kent-horizontal" href="/" title="The University of Kent" >
+<span class="sr-only">The University of Kent</span></a>
+
+{{#if user}}
+<nav class="audience-nav-links" role="menu">
+	<a role="menuitem">Hi Bob</a>
+</nav>
+{{else}}
+<button class="audience-menu kf-user"></button>
+<nav class="audience-nav-links" role="menu">
+	<a role="menuitem">Student</a>
+	<a role="menuitem">Staff</a>
+	<a href="//www.kent.ac.uk/alumni/" role="menuitem">Alumni</a>
+	<a role="menuitem">Departments</a>
+</nav>
+{{/if}}
