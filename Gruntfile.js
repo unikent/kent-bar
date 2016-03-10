@@ -11,10 +11,9 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-contrib-watch");
 	grunt.loadNpmTasks("grunt-sass");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
-	grunt.loadNpmTasks("grunt-jslint");
 	grunt.loadNpmTasks("grunt-eslint");
 
-	grunt.registerTask("lint", ["jslint"]);
+	grunt.registerTask("lint", ["eslint"]);
 	grunt.registerTask("compile-test",  ["clean:test", "copy:test", "browserify:test", "sass:test"]);
 	grunt.registerTask("compile-dev",  ["clean:dev", "copy:dev", "browserify:dev", "sass:dev"]);
 	grunt.registerTask("compile-deploy",  ["clean:deploy", "copy:deploy", "browserify:deploy", "sass:deploy", "uglify"]);
