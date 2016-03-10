@@ -15,26 +15,29 @@ module.exports = BaseView.extend({
 		// Create menu now we need it
 		if(!this.menu){
 			this.menu = new Menu();
-			this.el.parentNode.insertBefore(this.menu.el, this.el.nextSibling);
+			this.el.appendChild(this.menu.el);
+			//this.el.parentNode.insertBefore(this.menu.el, this.el.nextSibling);
 		}
 		// toggle it
-		this.menu.open(this.target.getAttribute("data-action"));
+		this.menu.open(e.target.getAttribute("data-action"));
 	},
 	mobileMenuToggle: function(e){
 
+		if(this.menu && this.menu.isOpen){
+			this.menu.hide();
+		}
+
 		// toogle in class + aria states
-		if (helper.hasClass(this.navLinksEl, "in")){
+		if (helper.hasClass(this.el, "in")){
 			e.target.setAttribute("aria-expanded", "false");
-			helper.removeClass(this.navLinksEl, "in");
+			helper.removeClass(this.el, "in");
 		} else {
 			e.target.setAttribute("aria-expanded", "true");
-			helper.addClass(this.navLinksEl, "in");
+			helper.addClass(this.el, "in");
 		}
 	},
 	render: function () {
 		"use strict";
 		this.renderContent(template());
-
-		this.navLinksEl = this.el.querySelector(".audience-nav-links");
 	}
 });

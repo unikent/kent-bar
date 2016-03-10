@@ -28,8 +28,8 @@
 		border: none;
 		font-size: 1.2rem;
 		float: right;
-		height: 45px;
-		width: 45px;
+		height: $bar-height;
+		width: $bar-height;
 		cursor: pointer;
 	}
 
@@ -37,10 +37,6 @@
 		height:0;
 		overflow:hidden;
 		transition: height 200ms;
-
-		&.in {
-			height: 172px;
-		}
 
 		a {	
 			cursor: pointer;
@@ -62,6 +58,16 @@
 		}
 	}
 
+	&.in {
+		nav.audience-nav-links {
+			height: 172px;
+		}
+		button.audience-menu::before{
+			content: ""; 
+		}
+
+	}
+
 	@include media-breakpoint-up(md) {
 		button.audience-menu {
 			display:none;
@@ -80,7 +86,7 @@
 				display:inline-block;
 				background: none;
 				padding:0;
-				line-height: 45px;
+				line-height: $bar-height;
 				color: #fff;
 				margin-left: .5em;
 				border-bottom:0px;

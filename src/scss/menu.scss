@@ -2,10 +2,10 @@
 	position:fixed;
 	z-index:99;
 	width: 100vw;
-	height:100vh;
+	height: calc(100vh - #{$bar-height});
 	background:#fff;
 	left: 0;
-    top: 0;
+    top: $bar-height;
 
     @include media-breakpoint-up(md) {
     	position:absolute;

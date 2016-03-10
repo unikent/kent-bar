@@ -10,25 +10,26 @@ module.exports = BaseView.extend({
 		this.el.innerHTML = template();
 	},
 	currentMenu: false,
-	menuOpen: false,
+	isOpen: false,
 
 	open: function(menu){
-		if(currentMenu === menu && menuOpen){
+		if(this.currentMenu === menu && this.isOpen){
 			this.hide();
 		}else{
-			if(currentMenu !== menu){
+			if(this.currentMenu !== menu){
 				this.render(menu);
+				this.currentMenu = menu;
 			}
 			this.show();
 		}	
 	},
 	show: function(){
 		this.el.style.display = 'block';
-		this.menuOpen = true;
+		this.isOpen = true;
 	},
 	hide: function(){
 		this.el.style.display = 'none';
-		this.menuOpen = false;
+		this.isOpen = false;
 	},
 	render: function (menu) {
 
