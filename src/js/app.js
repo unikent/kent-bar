@@ -33,6 +33,7 @@ var app = {
 
 			bar = new Bar({el: container});
 			bar.render();
+			bar.services = app.services;
 			app.insertStyles();
 
 			app.services.fetch({reset:true});

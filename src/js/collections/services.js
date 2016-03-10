@@ -5,6 +5,8 @@ var Backbone = require("exoskeleton"),
 module.exports = baseCollection.extend({
 
 	model: ServiceModel,
+	ready: false,
+	loaded: false,
 
 	url: function () {
 		return this.api.get() + "/v1/services";
@@ -13,6 +15,20 @@ module.exports = baseCollection.extend({
 	key_services: {},
 
 	initialize: function () {
+		var here = this;
+
+		this.loaded = new Promise(function(success, fail){
+			here.on("reset", function(){
+				here.ready = true;
+				success(here);
+				
+			});
+			here.on("error", function(){
+				here.ready = false;
+				fail(here);
+			});
+		});
+
 		this.on("reset", this.populateKeyServices);
 	},
 

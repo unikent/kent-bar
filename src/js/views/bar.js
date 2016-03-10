@@ -9,12 +9,13 @@ module.exports = BaseView.extend({
 		"click button.audience-menu": "mobileMenuToggle",
 		"click nav.audience-nav-links a": "menuClick"
 	},
+	services: null,
 	navLinksEl: null,
 	menu: null,
 	menuClick: function(e){
 		// Create menu now we need it
 		if(!this.menu){
-			this.menu = new Menu();
+			this.menu = new Menu({services: this.services});
 			this.el.appendChild(this.menu.el);
 			//this.el.parentNode.insertBefore(this.menu.el, this.el.nextSibling);
 		}
