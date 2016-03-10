@@ -9,7 +9,6 @@ module.exports = function (grunt) {
 		watch: require("./watch"),
 		clean: require("./clean"),
 		uglify: require("./uglify"),
-		jslint: require("./jslint"),
 		eslint: require("./eslint")
 	};
 	return config;
