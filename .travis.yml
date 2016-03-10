@@ -8,5 +8,6 @@ before_install:
   - cp travis_env.json local_env.json
 install: npm install
 before_script:
+  - grunt eslint
   - grunt compile-test
 script: npm test
