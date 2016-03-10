@@ -97,7 +97,6 @@ window.KENT.kentbar.defaults = {
 	],
 	custom_link: false,
 	styles:{
-		
 		kentfont:true,
 		fonts:true,
 		base:true,
@@ -105,7 +104,7 @@ window.KENT.kentbar.defaults = {
 };
 
 window.KENT.kentbar.styles = {
-	base: 'http://local.dev:80/kent-bar/build/dev/main.css',
+	base: '/main.css',
 	kentfont:'https://static.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css',
 	fonts:'https://beta.kent.ac.uk/assets/fonts/arial-light.css',
    

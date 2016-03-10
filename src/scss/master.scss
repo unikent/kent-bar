@@ -39,9 +39,10 @@
 	nav.audience-nav-links {
 		height:0;
 		overflow:hidden;
+		transition: height 200ms;
 
 		&.in {
-			height:auto;
+			height: 172px;
 		}
 
 		a {	
@@ -64,25 +65,35 @@
 		}
 	}
 
-	/*
 	@include media-breakpoint-up(md) {
-		nav {
+		button.audience-menu {
+			display:none;
+		}
+		nav.audience-nav-links {
+			height:auto;
 			font-size:0.9rem;
 			float:right;
 			margin-right: 20px;
-			
 
-			a {
-				cursor:pointer;
+			&.in {
+				height:auto;
+			}
+
+			a {	
+				display:inline-block;
+				background: none;
+				padding:0;
 				line-height: 45px;
 				color: #fff;
 				margin-left: .5em;
-				text-decoration:none;
+				border-bottom:0px;
+
+				&::after { display:none; content:none; }
 			}
 		}
 
 	}
-	*/
+
 }
 
 /*
