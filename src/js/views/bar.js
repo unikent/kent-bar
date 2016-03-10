@@ -10,7 +10,7 @@ module.exports = BaseView.extend({
 	},
 	navLinksEl: null,
 	menuClick: function(e){
-		console.log("invoke "+ e.target.innerText);
+		//console.log("invoke "+ e.target.innerText);
 	},
 	mobileMenuToggle: function(e){
 
