@@ -5,9 +5,10 @@ var BaseCollection = require("../../src/js/collections/base"),
 
 describe("BaseCollection", function () {
 	"use strict";
-	describe("exampleTest", function () {
-		it("works", function () {
-			expect(true).to.equal(true);
-		});
-	});
+
+	//describe("exampleTest", function () {
+	//	it("works", function () {
+	//		expect(true).to.equal(true);
+	//	});
+	//});
 });

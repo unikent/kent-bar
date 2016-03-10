@@ -1,17 +1,25 @@
-var generateLocalSettings = function (content) {
+var generateLocalSettings = function (env, content) {
 	"use strict";
 	/*jslint stupid: true */
 	var fs = require("fs"), settings;
 
 	// tell user whats wrong, rather than just dieing
 	try {
-		settings = fs.readFileSync("local_env.json", "utf8");
+		settings = fs.readFileSync(env, "utf8");
 	} catch (e) {
-		console.log("\nUnable to build. local_env.json file not found.");
+		console.log("\nUnable to build. " + env + " file not found.");
 		process.exit();
 	}
 
 	return content.replace(/##local_settings##/g, "<script> window.KENT = { settings: " + settings + "}; </script>");
+};
+
+var generateDevSettings = function(content){
+	return generateLocalSettings("local_env.json", content);
+};
+
+var generateTestSettings = function(content){
+	return generateLocalSettings("travis_env.json", content);
 };
 
 var removePlaceholders = function (content) {
@@ -42,7 +50,7 @@ module.exports = {
 			}
 		],
 		options: {
-			process: generateLocalSettings
+			process: generateTestSettings
 		}
 	},
 	dev: {
@@ -63,7 +71,7 @@ module.exports = {
 			}
 		],
 		options: {
-			process: generateLocalSettings
+			process: generateDevSettings
 		}
 	},
 	deploy:  {
