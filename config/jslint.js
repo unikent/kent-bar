@@ -1,10 +1,10 @@
 module.exports = {
 	client: {
 		src: [
-			'src/js/**/*.js',
-			'test/**/*.js',
-			'config/*.js',
-			'Gruntfile.js'
+			"src/js/**/*.js",
+			"test/**/*.js",
+			"config/*.js",
+			"Gruntfile.js"
 		],
 		directives: {
 			browserify: true,
@@ -19,7 +19,7 @@ module.exports = {
 
 		},
 		options: {
-			edition: 'latest',
+			edition: "latest",
 			errorsOnly: false,
 			failOnError: true
 		}

@@ -1,14 +1,14 @@
-var hbsfy = require('hbsfy');
+var hbsfy = require("hbsfy");
 
 module.exports = {
 	dev: {
 		options: {
-			ignore: ['jquery', 'underscore'],
+			ignore: ["jquery", "underscore"],
 			transform: [
 				hbsfy,
-				['aliasify', {
+				["aliasify", {
 					aliases: {
-						'backbone': 'exoskeleton'
+						"backbone": "exoskeleton"
 					},
 					global: true,
 					verbose: true
@@ -19,17 +19,17 @@ module.exports = {
 			}
 		},
 		files: {
-			"build/dev/app.js": ['src/js/app.js']
+			"build/dev/app.js": ["src/js/app.js"]
 		}
 	},
 	test: {
 		options: {
-			ignore: ['jquery', 'underscore'],
+			ignore: ["jquery", "underscore"],
 			transform: [
 				hbsfy,
-				['aliasify', {
+				["aliasify", {
 					aliases: {
-						'backbone': 'exoskeleton'
+						"backbone": "exoskeleton"
 					},
 					global: true,
 					verbose: false
@@ -40,17 +40,17 @@ module.exports = {
 			}
 		},
 		files: {
-			"build/test/app.js": ['test/**/*.js', 'src/js/app.js']
+			"build/test/app.js": ["test/**/*.js", "src/js/app.js"]
 		}
 	},
 	deploy: {
 		options: {
-			ignore: ['jquery', 'underscore'],
+			ignore: ["jquery", "underscore"],
 			transform: [
 				hbsfy,
-				['aliasify', {
+				["aliasify", {
 					aliases: {
-						'backbone': 'exoskeleton'
+						"backbone": "exoskeleton"
 					},
 					global: true,
 					verbose: true
@@ -58,7 +58,7 @@ module.exports = {
 			]
 		},
 		files: {
-			"build/deploy/app.js": ['src/js/app.js']
+			"build/deploy/app.js": ["src/js/app.js"]
 		}
 	}
 };

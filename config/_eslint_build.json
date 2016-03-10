@@ -6,7 +6,7 @@
 		"exports": true,
 		"module": true,
 		"require": true,
-		"procces": true
+		"process": true
 	},
 	"rules": {
 		// ES6
@@ -179,7 +179,7 @@
 
 		// TBD
 		"quotes": [2, "double"],
-		"eol-last": 2,
-		"no-console": 2
+		"eol-last": 2
+		//"no-console": 2 - co9nsole allowed in build scripts
 	}
 }

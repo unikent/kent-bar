@@ -6,7 +6,7 @@ module.exports = {
 	},
 	prod: {
 		files: {
-			'build/deploy/app.js': ['build/deploy/app.js']
+			"build/deploy/app.js": ["build/deploy/app.js"]
 		}
 	}
 };
