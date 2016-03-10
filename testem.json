@@ -3,17 +3,17 @@
     "before_tests": "grunt compile-test",
     "test_page": "test/test.html",
     "launchers": {
-        "JSLint": {
-            "command": "grunt jslint"
+        "ESLint": {
+            "command": "grunt eslint"
         }
     },
     "launch_in_dev": [
-        "JSLint",
+        "ESLint",
         "Chrome",
         "PhantomJS"
     ],
     "launch_in_ci": [
-        "JsLint",
+        "ESLint",
         "PhantomJS"
     ]
 }
