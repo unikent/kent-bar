@@ -31,10 +31,26 @@ module.exports = baseCollection.extend({
 						ks = that.filter(function (service) {
 							return (that.key_services[type][group].indexOf(service.get("id")) > -1);
 						});
-						this.key_services[type][group] = new Backbone.Collection(ks);
+						this.key_services[type][group] = ks;
 					}
 				}
 			}
+		}
+	},
+
+	filterWithTags: function(tags){
+		if (!tags instanceof Array){
+			return this;
+		} else {
+			return this.filter(function (service) {
+
+				for (var i = 0; i < tags.length; i++) {
+					if (service.get("tags").indexOf(tags[i]) > -1) {
+						return true;
+					}
+				}
+				return false;
+			});
 		}
 	}
 
