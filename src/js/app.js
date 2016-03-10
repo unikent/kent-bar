@@ -1,16 +1,22 @@
-var Backbone = require("exoskeleton");
-var Bar = require("./views/bar.js");
+var Backbone = require("exoskeleton"),
+	Bar = require("./views/bar.js"),
+	NV = require("backbone.nativeview"),
+	ServicesCollection = require("./collections/services");
 
-var NV = require("backbone.nativeview");
 Backbone.View = NV;
 Backbone.ajax = require("backbone.nativeajax");
 
 var app = {
+
+	services: null,
+
 	init: function () {
 		"use strict";
 
 		var container = window.KENT.kentbar.config.target,
 			app = this;
+
+		this.services = new ServicesCollection();
 
 		document.addEventListener("DOMContentLoaded", function () {
 			var bar, barEl;
@@ -28,6 +34,9 @@ var app = {
 			bar = new Bar({el: container});
 			bar.render();
 			app.insertStyles();
+
+			app.services.fetch({reset:true});
+
 			Backbone.history.start();
 		});
 	},
