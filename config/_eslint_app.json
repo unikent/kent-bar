@@ -5,7 +5,8 @@
 	"globals": {
 		"exports": true,
 		"module": true,
-		"require": true
+		"require": true,
+		"template": true
 	},
 	"rules": {
 		// ES6
