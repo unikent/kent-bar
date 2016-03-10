@@ -1,8 +1,16 @@
 var generateLocalSettings = function (content) {
     "use strict";
     /*jslint stupid: true */
-    var fs = require('fs'),
+    var fs = require('fs'), settings;
+
+    // tell user whats wrong, rather than just dieing
+    try {
         settings = fs.readFileSync('local_env.json', 'utf8');
+    }catch(e){
+        console.log('\nUnable to build. local_env.json file not found.');
+        process.exit();
+    }
+    
     return content.replace(/##local_settings##/g, '<script> window.KENT = { settings: ' + settings + '}; </script>');
 };
 
