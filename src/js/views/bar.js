@@ -1,5 +1,6 @@
 var BaseView = require("./base"),
-	helper = require("../lib/helper");
+	helper = require("../lib/helper"),
+	Menu = require("./menu"),
     template = require("../templates/bar.hbs");
 
 module.exports = BaseView.extend({
@@ -9,7 +10,13 @@ module.exports = BaseView.extend({
 		"click nav.audience-nav-links a": "menuClick"
 	},
 	navLinksEl: null,
+	menu: null,
 	menuClick: function(e){
+
+		if(!this.menu){
+			this.menu = new Menu();
+			this.el.appendChild(this.menu.el);
+		}
 		console.log("invoke "+ e.target.innerText);
 	},
 	mobileMenuToggle: function(e){
