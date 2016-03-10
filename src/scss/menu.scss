@@ -1,0 +1,20 @@
+#kent-bar-menu {
+	position:fixed;
+	z-index:99;
+	width: 100vw;
+	height:100vh;
+	background:#fff;
+	left: 0;
+    top: 0;
+
+    @include media-breakpoint-up(md) {
+    	position:absolute;
+    	top:45px;
+    	right: 10px;
+    	left: auto;
+    	width: 40%;
+    	max-width:700px;
+    	height:200px;
+    	border: solid 1px #eee;
+    }
+}

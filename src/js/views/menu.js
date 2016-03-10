@@ -4,13 +4,35 @@ var BaseView = require("./base"),
 module.exports = BaseView.extend({
 
 	initialize: function(){
+		// create self
 		this.el = document.createElement("div");
-		this.el.className = 'kent-bar-menu';
+		this.el.id = 'kent-bar-menu';
+		this.el.innerHTML = template();
 	},
-	render: function () {
-		"use strict";
-		this.renderContent(template());
+	currentMenu: false,
+	menuOpen: false,
 
-		this.navLinksEl = this.el.querySelector(".audience-nav-links");
+	open: function(menu){
+		if(currentMenu === menu && menuOpen){
+			this.close();
+		}else{
+			if(currentMenu !== menu){
+				this.render(menu);
+			}
+			this.show();
+		}	
+	},
+	show: function(){
+		this.el.style.display = 'block';
+		this.menuOpen = true;
+	},
+	hide: function(){
+		this.el.style.display = 'none';
+		this.menuOpen = false;
+	},
+	render: function (menu) {
+
+		// do stuff
+	
 	}
 });
