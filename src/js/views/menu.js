@@ -14,7 +14,7 @@ module.exports = BaseView.extend({
 
 	open: function(menu){
 		if(currentMenu === menu && menuOpen){
-			this.close();
+			this.hide();
 		}else{
 			if(currentMenu !== menu){
 				this.render(menu);
