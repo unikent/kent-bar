@@ -6,9 +6,9 @@ var BaseModel = require("../../src/js/models/base"),
 describe("Base Model", function () {
 	"use strict";
 
-	describe("exampleTest", function () {
-		it("works", function () {
-			expect(true).to.equal(true);
-		});
-	});
+	//describe("exampleTest", function () {
+	//	it("works", function () {
+	//		expect(true).to.equal(true);
+	//	});
+	//});
 });
