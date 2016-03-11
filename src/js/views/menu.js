@@ -62,7 +62,7 @@ module.exports = BaseView.extend({
 		var here = this;
 		this.services.loaded.then(function(services){
 			var user_services = [];
-			if(typeof services.key_services[menu] !== "undefined"){
+			if (typeof services.key_services[menu] !== "undefined"){
 				user_services = services.key_services[menu].default;
 			}
 
