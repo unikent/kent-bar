@@ -77,6 +77,7 @@
 			font-size:0.9rem;
 			float:right;
 			margin-right: 20px;
+			overflow:visible;
 
 			&.in {
 				height:auto;
@@ -90,11 +91,27 @@
 				color: #fff;
 				margin-left: .5em;
 				border-bottom:0px;
+				position: relative;
 
 				&::after { display:none; content:none; }
+
+				&.in::after {
+					box-sizing: border-box;
+					padding:0;
+					content: " ";
+					display:block;
+					height:14px;
+					width:14px;
+					background: #fff;
+					position:absolute;
+					bottom: -18px;
+					right: calc(50% - 7px);
+					transform: rotate(45deg);
+					z-index: 100;
+					border-top: 1px solid #ccc;
+					border-left: 1px solid #ccc;
+				}
 			}
 		}
-
 	}
-
 }

@@ -21,7 +21,6 @@ module.exports = baseCollection.extend({
 			here.on("reset", function(){
 				here.ready = true;
 				success(here);
-				
 			});
 			here.on("error", function(){
 				here.ready = false;

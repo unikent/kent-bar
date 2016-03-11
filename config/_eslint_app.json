@@ -6,7 +6,8 @@
 		"exports": true,
 		"module": true,
 		"require": true,
-		"template": true
+		"template": true,
+		"Promise": true
 	},
 	"rules": {
 		// ES6

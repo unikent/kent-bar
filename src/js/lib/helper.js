@@ -23,4 +23,25 @@ module.exports = new function(){
 		}
 		return (node.className.match(new RegExp("(^|\\s)"+nclass+"(\\s|$)")) !== null);
 	};
+
+	this.isNodeDecendantOf = function(node, parent){
+		var n = node;
+		var maxDepth = 100, depth = 0;
+		// if parent doesn't equal body
+		while (n && n !== document.body && depth < maxDepth){
+
+			// if we hit the parent, the our node was a descendant of it after all.
+			if (n === parent){
+				return true;
+			}
+
+			// get next parent
+			n = n.parentNode;
+			// limit depth
+			depth++;
+		}
+
+		// if we hit body / depth limit, assume this isn't a descendant
+		return false;
+	};
 };
