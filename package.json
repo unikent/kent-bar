@@ -19,7 +19,7 @@
     "backbone.nativeajax": "^0.4.3",
     "backbone.nativeview": "^0.3.3",
     "bootstrap": "4.0.0-alpha.2",
-    "chai": "~1.9.2",
+    "chai": "^2.0.0",
     "exoskeleton": "^0.7.0",
     "grunt": "~0.4.5",
     "grunt-browserify": "~3.2.0",
@@ -28,13 +28,14 @@
     "grunt-contrib-copy": "~0.7.0",
     "grunt-contrib-uglify": "~0.6.0",
     "grunt-contrib-watch": "~0.6.1",
+    "grunt-eslint": "^18.0.0",
     "grunt-sass": "^1.1.0",
     "handlebars": "~2.0.0",
     "hbsfy": "~2.2.0",
     "mocha": "~2.0.1",
     "phantomjs-prebuilt": "^2.1.4",
+    "sinon": "^1.17.3",
     "testem": "~0.6.22",
-    "time-grunt": "~1.0.0",
-    "grunt-eslint": "^18.0.0"
+    "time-grunt": "~1.0.0"
   }
 }

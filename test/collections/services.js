@@ -2,6 +2,7 @@
 var ServicesCollection = require("../../src/js/collections/services"),
 	ServiceModel = require("../../src/js/models/service"),
 	chai = require("chai"),
+	sinon = require("sinon"),
 	expect = chai.expect;
 
 describe("ServicesCollection", function () {
@@ -15,6 +16,16 @@ describe("ServicesCollection", function () {
 	});
 
 	describe("parse", function () {
+
+		it("calls storeResponse with response", function () {
+			var collection = new ServicesCollection();
+
+			collection.storeResponse = sinon.spy();
+			collection.parse("test");
+
+			expect(collection.storeResponse.calledWith("test")).to.equal(true);
+		});
+
 		it("populates key_services from response", function () {
 			var collection = new ServicesCollection();
 
