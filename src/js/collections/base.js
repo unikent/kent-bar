@@ -29,7 +29,7 @@ module.exports = Backbone.Collection.extend({
 
 				var method = options.reset ? "reset" : "set";
 				options.parse =true;
-				this[method](this.parse(resp), options);
+				this[method](resp, options);
 				if (options.success){
 					options.success(that, resp, options);
 				}
