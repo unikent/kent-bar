@@ -118,7 +118,7 @@ window.KENT.kentbar.defaults = {
 
 window.KENT.kentbar.styles = {
 	base: "/main.css",
-	kentfont:"https://static.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css",
+	kentfont:"https://static-test.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css", //TODO: update to static live once kentfont updated on live
 	fonts:"https://beta.kent.ac.uk/assets/fonts/arial-light.css"
 };
 
