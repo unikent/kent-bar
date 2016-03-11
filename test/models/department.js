@@ -50,4 +50,30 @@ describe("Department Model", function () {
 			expect(result.sort_title).to.equal("bar");
 		});
 	});
+
+	describe("transformTitle", function () {
+		it("does not effect a title with no comma", function () {
+			var department = new DepartmentModel();
+
+			var title = department.transformTitle("test");
+
+			expect(title).to.equal("test");
+		});
+
+		it("transforms a title with a comma correctly", function () {
+			var department = new DepartmentModel();
+
+			var title = department.transformTitle("test, a b c");
+
+			expect(title).to.equal("a b c test");
+
+			title = department.transformTitle("test , a b c ");
+
+			expect(title).to.equal("a b c test");
+
+			title = department.transformTitle("test, foo, bar, a b c");
+
+			expect(title).to.equal("a b c test, foo, bar");
+		});
+	});
 });

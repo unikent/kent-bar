@@ -17,7 +17,7 @@ module.exports = baseModel.extend({
 
 	transformTitle: function(t){
 		if (t.lastIndexOf(",") > -1){
-			t = t.slice(t.lastIndexOf(",")).trim() + " " + t.slice(0, t.lastIndexOf(",")).trim();
+			t = t.slice(t.lastIndexOf(",")+1).trim() + " " + t.slice(0, t.lastIndexOf(",")).trim();
 		}
 		return t;
 	}
