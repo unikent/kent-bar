@@ -61,7 +61,11 @@ module.exports = BaseView.extend({
 		// draw the menu
 		var here = this;
 		this.services.loaded.then(function(services){
-			var user_services = services.key_services[menu].default;
+			var user_services = [];
+			if(typeof services.key_services[menu] !== "undefined"){
+				user_services = services.key_services[menu].default;
+			}
+
 			here.renderKeyServices(user_services);
 		});
 	},
