@@ -3,6 +3,7 @@
 	background: $brand-primary;
 	color: #fff;
 	font-family: "ArialLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	min-height: $bar-height;
 
 	a.navbar-brand {
 		font-size: 1.2rem;
@@ -31,12 +32,14 @@
 		height: $bar-height;
 		width: $bar-height;
 		cursor: pointer;
+		box-sizing: border-box;
 	}
 
 	nav.audience-nav-links {
 		height:0;
 		overflow:hidden;
 		transition: height 200ms;
+		clear: both;
 
 		a {	
 			cursor: pointer;
@@ -60,7 +63,7 @@
 
 	&.in {
 		nav.audience-nav-links {
-			height: 172px;
+			height: 164px;
 		}
 		button.audience-menu::before{
 			content: ""; 
