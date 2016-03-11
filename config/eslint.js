@@ -5,6 +5,7 @@ module.exports = {
 		},
 		src: [
 			"config/*.js",
+			"test/**/*.js",
 			"Gruntfile.js"
 		]
 	},
@@ -13,8 +14,7 @@ module.exports = {
 			configFile: "config/_eslint_app.json"
 		},
 		src: [
-			"src/js/**/*.js",
-			"test/**/*.js"
+			"src/js/**/*.js"
 		]
 	}
 };

@@ -4,6 +4,8 @@ var Backbone = require("exoskeleton"),
 
 module.exports = baseCollection.extend({
 
+	cache_key:"services",
+
 	model: ServiceModel,
 
 	url: function () {
@@ -17,6 +19,7 @@ module.exports = baseCollection.extend({
 	},
 
 	parse: function (response) {
+		this.storeResponse(response);
 		this.key_services = response.key_services;
 		return response.services;
 	},
