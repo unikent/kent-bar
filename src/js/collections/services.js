@@ -4,6 +4,8 @@ var Backbone = require("exoskeleton"),
 
 module.exports = baseCollection.extend({
 
+	cache_key:"services",
+
 	model: ServiceModel,
 	ready: false,
 	loaded: false,
@@ -12,7 +14,7 @@ module.exports = baseCollection.extend({
 		return this.api.get() + "/v1/services";
 	},
 
-	key_services: {},
+	key_services: false,
 
 	initialize: function () {
 		var here = this;
@@ -32,6 +34,7 @@ module.exports = baseCollection.extend({
 	},
 
 	parse: function (response) {
+		this.storeResponse(response);
 		this.key_services = response.key_services;
 		return response.services;
 	},
@@ -43,9 +46,10 @@ module.exports = baseCollection.extend({
 			if (this.key_services.hasOwnProperty(type)) {
 				for (group in this.key_services[type]) {
 					if (this.key_services[type].hasOwnProperty(group)) {
-						ks = that.filter(function (service) {
-							return (that.key_services[type][group].indexOf(service.get("id")) > -1);
-						});
+						ks = [];
+						for (var i= 0; i<this.key_services[type][group].length; i++){
+							ks.push(this.get(this.key_services[type][group][i]));
+						}
 						this.key_services[type][group] = ks;
 					}
 				}
