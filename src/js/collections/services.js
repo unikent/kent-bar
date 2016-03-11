@@ -47,7 +47,7 @@ module.exports = baseCollection.extend({
 				for (group in this.key_services[type]) {
 					if (this.key_services[type].hasOwnProperty(group)) {
 						ks = [];
-						for (var i= 0; i<this.key_services[type][group].length; i++){
+						for (var i = 0; i < this.key_services[type][group].length; i++){
 							ks.push(this.get(this.key_services[type][group][i]));
 						}
 						this.key_services[type][group] = ks;
