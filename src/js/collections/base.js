@@ -28,6 +28,7 @@ module.exports = Backbone.Collection.extend({
 				resp = resp.payload;
 
 				var method = options.reset ? "reset" : "set";
+				options.parse =true;
 				this[method](this.parse(resp), options);
 				if (options.success){
 					options.success(that, resp, options);
