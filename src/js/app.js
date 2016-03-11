@@ -83,10 +83,10 @@ var app = {
 				padding_direction = "padding" + direction;
 
 				if (bodystyle[margin_direction] !== "0px") {
-					kentBar.style[margin_direction] = "-"+bodystyle[margin_direction];
+					kentBar.style[margin_direction] = "-" + bodystyle[margin_direction];
 				}
 				if (bodystyle[padding_direction] !== "0px") {
-					kentBar.style[padding_direction]  = "-"+bodystyle[padding_direction];
+					kentBar.style[padding_direction]  = "-" + bodystyle[padding_direction];
 				}
 			});
 

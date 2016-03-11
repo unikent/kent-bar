@@ -4,7 +4,7 @@ module.exports = new function(){
 			return;
 		}
 		if (!this.hasClass(node, nclass)){
-			node.className = node.className+" "+nclass;
+			node.className = node.className + " " + nclass;
 		}
 	};
 
@@ -12,7 +12,7 @@ module.exports = new function(){
 		if (typeof node === "undefined" || node === null){
 			return;
 		}
-		node.className = node.className.replace(new RegExp("(^|\\s)"+nclass+"(\\s|$)"), "");
+		node.className = node.className.replace(new RegExp("(^|\\s)" + nclass + "(\\s|$)"), "");
 		return;
 	};
 
@@ -21,12 +21,11 @@ module.exports = new function(){
 		if (typeof node === "undefined" || node === null){
 			return;
 		}
-		return (node.className.match(new RegExp("(^|\\s)"+nclass+"(\\s|$)")) !== null);
+		return (node.className.match(new RegExp("(^|\\s)" + nclass + "(\\s|$)")) !== null);
 	};
 
 	this.isNodeDecendantOf = function(node, parent){
-		var n = node;
-		var maxDepth = 100, depth = 0;
+		var n = node, maxDepth = 100, depth = 0;
 		// if parent doesn't equal body
 		while (n && n !== document.body && depth < maxDepth){
 

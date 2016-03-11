@@ -72,7 +72,7 @@ module.exports = BaseView.extend({
 	renderKeyServices: function(services){
 		var markup = "";
 		services.forEach(function(service){
-			markup += "<a href=\""+ service.get("url") +"\" class=\"key-service "+ service.get("icon") +"\">"+ service.get("title") +"</a>";
+			markup += "<a href=\"" + service.get("url") + "\" class=\"key-service " + service.get("icon") + "\">" + service.get("title") + "</a>";
 		});
 		this.sections.keyServices.innerHTML = markup;
 	}
