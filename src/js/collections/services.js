@@ -4,7 +4,7 @@ var Backbone = require("exoskeleton"),
 
 module.exports = baseCollection.extend({
 
-	cache_key:"services",
+	cache_key:"kentbar.services",
 
 	model: ServiceModel,
 
