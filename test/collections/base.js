@@ -181,7 +181,7 @@ describe("BaseCollection", function () {
 
 			collection.fetch({foo:1});
 
-			expect(collection.trigger.calledWith("sync", collection, "test", {foo:1})).to.equal(true);
+			expect(collection.trigger.calledWith("sync", collection, "test", {foo:1, parse:true})).to.equal(true);
 		});
 
 	});
