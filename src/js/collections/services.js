@@ -1,6 +1,7 @@
 var Backbone = require("exoskeleton"),
 	baseCollection = require("./base"),
-	ServiceModel = require("../models/service");
+	ServiceModel = require("../models/service"),
+	Promise = require("es6-promise").Promise;
 
 module.exports = baseCollection.extend({
 
