@@ -28,7 +28,6 @@
 		border:           none;
 		font-size:        1.2rem;
 		float:            right;
-		height:           $kentbar-height;
 		width:            $kentbar-height;
 		cursor:           pointer;
 		&:active,&:focus{
@@ -76,6 +75,8 @@
 	&.in {
 		nav.audience-nav-links {
 			height: 172px;
+			box-shadow: 1px 1px 3px #BFBFBF;
+			border-bottom: 1px solid #ccc;
 		}
 		button.audience-menu::before{
 			content: ""; 
@@ -90,8 +91,8 @@
 
 		&.in nav.audience-nav-links {
 			height:auto;
-			box-shadow: 1px 1px 3px #BFBFBF;
-			border-bottom: 1px solid #ccc;
+			box-shadow: none;
+			border-bottom: none;
 		}
 
 		nav.audience-nav-links {

@@ -19,6 +19,7 @@ module.exports = BaseView.extend({
 	},
 
 	menuClick: function(e){
+		e.preventDefault();
 		var target = e.target;
 
 		// Create menu now that we need it
@@ -47,6 +48,8 @@ module.exports = BaseView.extend({
 
 		// toggle menu itself
 		this.menu.open(e.target.getAttribute("data-action"));
+
+		return false;
 	},
 	mobileMenuToggle: function(e){
 		// toggle in class + aria states on mobile button

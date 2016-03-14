@@ -36,7 +36,7 @@ var app = {
 			}
 			app.container = document.querySelector(container);
 			bar = new Bar({el: container});
-			if(window.KENT.kentbar.config.render){
+			if (window.KENT.kentbar.config.render){
 				bar.render();
 			}
 			bar.services = app.services;
