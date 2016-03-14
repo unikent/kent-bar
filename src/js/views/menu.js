@@ -25,7 +25,7 @@ module.exports = BaseView.extend({
 			target: this.el.querySelector("#kent-bar-search"),
 			data: {},
 			hide_on_blur: false,
-			display_handler: this.renderServiceResult 
+			display_handler: this.renderServiceResult
 		});
 
 		// Close on click off
@@ -82,23 +82,22 @@ module.exports = BaseView.extend({
 		});
 	},
 	renderServiceResult: function(service){
-		return service.get('title');
+		return service.get("title");
 	},
 	renderServicesSearch: function(type){
 		// set placeholder
 		this.qs.instance.target.placeholder = "Search " + type + " systems and services...";
-		this.qs.instance.target.value = '';
+		this.qs.instance.target.value = "";
 
-		if(typeof this.qs.datastores[type] === 'undefined'){
-			var payload = this.services.filterWithTags(['general', type]);
-			var datastore = quickspot.datastore({data: payload });
+		if (typeof this.qs.datastores[type] === "undefined"){
+			var payload = this.services.filterWithTags(["general", type]);
+			var datastore = quickspot.datastore({data: payload});
 			this.qs.datastores[type] = datastore.store;
 		}
 		this.qs.instance.datastore = this.qs.datastores[type];
-		this.qs.instance.lastValue = '';
-		console.log(this.qs.instance);
-		this.qs.instance.container.style.display = 'none';
-		
+		this.qs.instance.lastValue = "";
+		this.qs.instance.container.style.display = "none";
+
 	},
 	renderKeyServices: function(services){
 		var markup = "";

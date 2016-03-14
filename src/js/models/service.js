@@ -9,7 +9,7 @@ module.exports = baseModel.extend({
 			delete response.url;
 		}
 		this.__keyvalue	= this._parseQuickspotString(response.title);
-		this.__searchvalues = this._parseQuickspotString(response.title + ' ' + response.tags.join(' '));
+		this.__searchvalues = this._parseQuickspotString(response.title + " " + response.tags.join(" "));
 
 		return response;
 	},
