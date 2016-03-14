@@ -11,6 +11,7 @@ var app = {
 
 	services: null,
 	departments:null,
+	container:null,
 
 	init: function () {
 		"use strict";
@@ -33,7 +34,7 @@ var app = {
 				document.body.insertBefore(barEl, document.body.childNodes[0]);
 				container = "#kent-bar";
 			}
-
+			app.container = document.querySelector(container);
 			bar = new Bar({el: container});
 			bar.render();
 			bar.services = app.services;

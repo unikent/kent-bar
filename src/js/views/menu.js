@@ -22,7 +22,7 @@ module.exports = BaseView.extend({
 		// Close on click off
 		var that = this;
 		document.body.addEventListener("click", function(e){
-			if (!helper.isNodeDecendantOf(e.target, document.getElementById("kent-bar"))){
+			if (!helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container)){
 				that.hide();
 			}
 		});
@@ -72,7 +72,7 @@ module.exports = BaseView.extend({
 	renderKeyServices: function(services){
 		var markup = "";
 		services.forEach(function(service){
-			markup += "<a href=\"" + service.get("url") + "\" class=\"key-service " + service.get("icon") + "\">" + service.get("title") + "</a>";
+			markup += "<a href=\"" + service.get("link") + "\" class=\"key-service " + service.get("icon") + "\">" + service.get("title") + "</a>";
 		});
 		this.sections.keyServices.innerHTML = markup;
 	}
