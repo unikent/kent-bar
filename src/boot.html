@@ -5,16 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	##local_settings##
 	<script>
-		window.KENT = window.KENT |{};
+
+		window.KENT = window.KENT || {};
 		window.KENT.kentbar = {
 			config:{
 				target:'#someDiv'
 			}
 		};
+
 	</script>
     <script src="app.js"></script>
 </head>
-<body>
+<body style="margin:0;">
 <div id="someDiv">
 </div>
 <h1>KENT BAR EXAMPLE</h1>

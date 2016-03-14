@@ -12,6 +12,12 @@ module.exports = BaseView.extend({
 	services: null,
 	navLinksEl: null,
 	menu: null,
+
+
+	initialize: function(){
+		helper.addClass(this.el, "kent-bar");
+	},
+
 	menuClick: function(e){
 		var target = e.target;
 

@@ -1,4 +1,4 @@
-#kent-bar {
+#kent-bar, .kent-bar {
 	#kent-bar-menu {
 		position:fixed;
 		z-index:99;
@@ -11,12 +11,32 @@
 		box-sizing: border-box;
 
 		.search-services {
+			&::before{
+				content: $kf-search;
+				font-family: $font-family-kentfont;
+				font-size: 20px;
+				position: absolute;
+				left:21px;
+				top:19px;
+				color: #A5A5A5;
+			}
 			input {
 				box-sizing: border-box;
 				width: calc(100% - 20px);
-				padding:10px;
-				margin:10px;
-				border: solid 1px $brand-primary;
+				padding: 6px 12px 6px 35px;
+				margin:12px;
+				font-size: 16px;
+				line-height: 1.5;
+				color: #55595c;
+				background-color: #fff;
+				background-image: none;
+				border: 1px solid #ccc;
+				transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+				&:focus{
+					border-color: #66afe9;
+					outline: none;
+				}
+
 			}
 		}
 
@@ -24,23 +44,55 @@
 
 		}
 		.favorites-section{
-			padding:10px;
-			background:$brand-primary-tint;
+			padding:12px;
+			background:$brand-secondary;
 		}
 
 		.user-services-section {
+			margin-bottom: 12px;
+
 			a.key-service {
 				box-sizing: border-box;
-				color: $brand-primary;
+				color: $link-color;
 				display:inline-block;
-				padding:15px; 
+				padding:15px 15px 15px 44px;
 				width:100%;
 				background:#f5f5f5;
-				border-bottom: solid 1px #eee;
+				border-bottom: solid 1px #ccc;
 				text-decoration: none;
+				transition: color 300ms, background-color 300ms;
 
+				&:first-child{
+					border-top: solid 1px #ccc;
+				}
+				&:hover{
+					color: #00263d;
+					background: $brand-secondary;
+					&::after{
+						padding-left: 11px;
+					}
+				}
 				&::before {
-					padding-right:10px;
+					display:block;
+					position: absolute;
+					left:12px;
+					top:0;
+					font-size: 20px;
+					line-height: 46px;
+					width: 25px;
+					text-align: center;
+				}
+				&::after{
+					display: inline-block;
+					box-sizing: border-box;
+					padding-left: 8px;
+					content: $kf-angle-right;
+					font-family:  $font-family-kentfont;
+					width: 20px;
+					text-align: left;
+					transition: all 300ms;
+					position: absolute;
+					right:16px;
 				}
 			}
 		}
@@ -59,10 +111,17 @@
 		@include media-breakpoint-up(md) {
 
 			.user-services-section {
+				margin: 0 12px 12px;
 				a.key-service {
 					width:50%;
-					border-bottom:0;
+					border-bottom:none;
 					background: #fff;
+					&::after{
+						display: none;
+					}
+					&:first-child{
+						border-top: none;
+					}
 				}
 			}
 

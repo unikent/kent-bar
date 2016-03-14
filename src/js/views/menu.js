@@ -31,7 +31,7 @@ module.exports = BaseView.extend({
 		// Close on click off
 		var that = this;
 		document.body.addEventListener("click", function(e){
-			if (!helper.isNodeDecendantOf(e.target, document.getElementById("kent-bar-search")) && !helper.isNodeDecendantOf(e.target, document.querySelector(".audience-nav-links"))){
+			if (!helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector("#kent-bar-menu")) && !helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector(".audience-nav-links"))){
 				that.hide();
 			}
 		});
