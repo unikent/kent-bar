@@ -1,7 +1,8 @@
 var Backbone = require("exoskeleton"),
 	Bar = require("./views/bar.js"),
 	NV = require("backbone.nativeview"),
-	ServicesCollection = require("./collections/services");
+	ServicesCollection = require("./collections/services"),
+	DepartmentsCollection = require("./collections/departments");
 
 Backbone.View = NV;
 Backbone.ajax = require("backbone.nativeajax");
@@ -9,6 +10,7 @@ Backbone.ajax = require("backbone.nativeajax");
 var app = {
 
 	services: null,
+	departments:null,
 
 	init: function () {
 		"use strict";
@@ -17,6 +19,7 @@ var app = {
 			app = this;
 
 		this.services = new ServicesCollection();
+		this.departments = new DepartmentsCollection();
 
 		document.addEventListener("DOMContentLoaded", function () {
 			var bar, barEl;
@@ -37,6 +40,7 @@ var app = {
 			app.insertStyles();
 
 			app.services.fetch({reset:true});
+			app.departments.fetch({reset:true});
 
 			Backbone.history.start();
 		});
@@ -115,7 +119,7 @@ window.KENT.kentbar.defaults = {
 
 window.KENT.kentbar.styles = {
 	base: "/main.css",
-	kentfont:"https://static.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css",
+	kentfont:"https://static-test.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css", //TODO: update to static live once kentfont updated on live
 	fonts:"https://beta.kent.ac.uk/assets/fonts/arial-light.css"
 };
 

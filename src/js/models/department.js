@@ -8,7 +8,7 @@ module.exports = baseModel.extend({
 			response.link = response.url;
 			delete response.url;
 		}
-
 		return response;
 	}
+
 });
