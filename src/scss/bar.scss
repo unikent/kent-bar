@@ -24,24 +24,23 @@
 
 	button.audience-menu {
 		background-color: lighten($brand-primary, 3%);
-		color: #fff;
-		border: none;
-		font-size: 1.2rem;
-		float: right;
-		height: $bar-height;
-		width: $bar-height;
-		cursor: pointer;
+		color:            #fff;
+		border:           none;
+		font-size:        1.2rem;
+		float:            right;
+		height:           $kentbar-height;
+		width:            $kentbar-height;
+		cursor:           pointer;
 		&:active,&:focus{
 			outline: none;
 		}
 	}
 
 	nav.audience-nav-links {
+		width: 100%;
 		height:0;
 		overflow:hidden;
 		transition: height 200ms;
-		box-shadow: 1px 1px 3px #BFBFBF;
-		border-bottom: 1px solid #ccc;
 
 		a {	
 			cursor: pointer;
@@ -88,7 +87,15 @@
 		button.audience-menu {
 			display:none;
 		}
+
+		&.in nav.audience-nav-links {
+			height:auto;
+			box-shadow: 1px 1px 3px #BFBFBF;
+			border-bottom: 1px solid #ccc;
+		}
+
 		nav.audience-nav-links {
+			width: auto;
 			box-shadow: none;
 			border-bottom: none;
 			height:auto;
@@ -97,19 +104,15 @@
 			margin-right: 20px;
 			overflow:visible;
 
-			&.in {
-				height:auto;
-			}
-
 			a {	
-				display:inline-block;
-				background: none;
-				padding:0;
-				line-height: $bar-height;
-				color: #fff;
-				margin-left: .5em;
-				border-bottom:0px;
-				position: relative;
+				display:       inline-block;
+				background:    none;
+				padding:       0;
+				line-height:   $kentbar-height;
+				color:         #fff;
+				margin-left:   .5em;
+				border-bottom: 0px;
+				position:      relative;
 
 				&:hover{
 					color: #FFF;
