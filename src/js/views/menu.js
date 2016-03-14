@@ -21,12 +21,17 @@ module.exports = BaseView.extend({
 		};
 
 		// Boot quickspot instance
-		this.qs.instance = quickspot.attach({target: this.el.querySelector("#kent-bar-search"), data: {} });
+		this.qs.instance = quickspot.attach({
+			target: this.el.querySelector("#kent-bar-search"),
+			data: {},
+			hide_on_blur: false,
+			display_handler: this.renderServiceResult 
+		});
 
 		// Close on click off
 		var that = this;
 		document.body.addEventListener("click", function(e){
-			if (!helper.isNodeDecendantOf(e.target, document.getElementById("kent-bar"))){
+			if (!helper.isNodeDecendantOf(e.target, document.getElementById("kent-bar-search")) && !helper.isNodeDecendantOf(e.target, document.querySelector(".audience-nav-links"))){
 				that.hide();
 			}
 		});
@@ -76,50 +81,30 @@ module.exports = BaseView.extend({
 			here.renderServicesSearch(menu);
 		});
 	},
+	renderServiceResult: function(service){
+		return service.get('title');
+	},
 	renderServicesSearch: function(type){
 		// set placeholder
 		this.qs.instance.target.placeholder = "Search " + type + " systems and services...";
-
-		window.quickspot = quickspot;
-		window.dataz = this.services.filterWithTags(['general', type]);
-
+		this.qs.instance.target.value = '';
 
 		if(typeof this.qs.datastores[type] === 'undefined'){
-			
 			var payload = this.services.filterWithTags(['general', type]);
-
-			console.log(this._quickspoify(payload));
-			//console.log(quickspot.datastore({data: payload, search_on: [] }));
-			//console.log("!!!!!!!");
-
-			//console.log(this.qs.datastores[type]);
-			window.ds = this.qs.datastores[type];
+			var datastore = quickspot.datastore({data: payload });
+			this.qs.datastores[type] = datastore.store;
 		}
-
 		this.qs.instance.datastore = this.qs.datastores[type];
 		this.qs.instance.lastValue = '';
-		
-		
+		console.log(this.qs.instance);
+		this.qs.instance.container.style.display = 'none';
 		
 	},
 	renderKeyServices: function(services){
 		var markup = "";
 		services.forEach(function(service){
-			markup += "<a href=\"" + service.get("url") + "\" class=\"key-service " + service.get("icon") + "\">" + service.get("title") + "</a>";
+			markup += "<a href=\"" + service.get("link") + "\" class=\"key-service " + service.get("icon") + "\">" + service.get("title") + "</a>";
 		});
 		this.sections.keyServices.innerHTML = markup;
-	},
-	_quickspoify: function(collection){
-		var data_set = [], tmp;
-
-		collection.forEach(function(item){
-			tmp = item.attributes;
-			tmp.model = item;
-			tmp.tags = tmp.tags.join(' ');
-			data_set.push(tmp)
-		});
-		console.log(data_set);
-
-		return quickspot.datastore({data: data_set, search_on: ['id', 'title', 'tags'] , 'key_value': 'title'});
 	}
 });
