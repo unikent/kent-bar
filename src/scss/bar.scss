@@ -47,8 +47,6 @@
 		transition: height 200ms;
 		clear: both;
 
-
-
 		a {	
 			cursor: pointer;
 			color: $link-color;
@@ -82,7 +80,7 @@
 
 	&.in {
 		nav.audience-nav-links {
-			height: 172px;
+			height: 164px;
 			box-shadow: 1px 1px 3px #BFBFBF;
 			border-bottom: 1px solid #ccc;
 		}
