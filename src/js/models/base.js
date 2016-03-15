@@ -7,10 +7,9 @@ module.exports = Backbone.Model.extend({
 	_parseQuickspotString: function(str){
 
 		str = str.toLowerCase();
-		// remove ' " ( ) , . ?
-		str = str.replace(/(\"|\'|\,|\.|\)|\(|\-)/g, "");
-		// & = and
 		str = str.replace(/\&/g, "and");
+		// the space is on purpose, spaces are allowed
+		str = str.replace(/[^a-z 0-9]/g, "");
 
 		return str;
 	}

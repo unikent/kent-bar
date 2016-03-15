@@ -52,13 +52,13 @@
 		.user-services-section {
 			margin-bottom: 12px;
 		}
-		.quickspot-results {
+		.kentbar-quickspot-results {
 			max-height: 50vh;
 			overflow:auto;
 			position: relative;
 		}
 
-		.user-services-section a.key-service, .quickspot-results a.quickspot-result {
+		.user-services-section a.key-service, .kentbar-quickspot-results a.kentbar-quickspot-result {
 			box-sizing: border-box;
 			color: $link-color;
 			display:inline-block;
@@ -105,7 +105,7 @@
 			}
 		}
 
-		div.quickspot-results a.quickspot-result{
+		div.kentbar-quickspot-results a.kentbar-quickspot-result{
 			padding-left:15px;
 			background:#fff;
 
@@ -128,7 +128,7 @@
 				}
 			}
 
-			.quickspot-results {
+			.kentbar-quickspot-results {
 				max-height:236px;
 			}
 

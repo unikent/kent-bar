@@ -25,8 +25,13 @@ module.exports = BaseView.extend({
 		this.qs.instance = quickspot.attach({
 			target: this.el.querySelector("#kent-bar-search"),
 			data: {},
+			disable_occurrence_weighting: true,
+			auto_highlight: true,
 			hide_on_blur: false,
-			display_handler: this.renderServiceResult
+			display_handler: this.renderSearchResult,
+			click_handler: this.handleSearchClick,
+			css_class_prefix: "kentbar-quickspot",
+			safeload: false
 		});
 
 		var that = this;
@@ -108,25 +113,12 @@ module.exports = BaseView.extend({
 		});
 		this.renderKeyServices([]);
 	},
-	_setQuickspotDataStore: function(name, getDataCallback){
-
-		// init datastore if needed
-		if (typeof this.qs.datastores[name] === "undefined"){
-			var dataSet = getDataCallback();
-			var datastore = quickspot.datastore({data: dataSet});
-			this.qs.datastores[name] = datastore.store;
-		}
-
-		// Set store in to use
-		this.qs.instance.datastore = this.qs.datastores[name];
-
-		// set defaults
-		this.qs.instance.lastValue = "";
-		this.qs.instance.target.value = "";
-		this.qs.instance.container.style.display = "none";
-	},
-	renderServiceResult: function(service){
+	renderSearchResult: function(service){
 		return service.get("title");
+	},
+	handleSearchClick: function(service){
+		document.location.href = service.get("link");
+		return false;
 	},
 	renderServicesSearch: function(type){
 		// set placeholder
@@ -145,5 +137,20 @@ module.exports = BaseView.extend({
 
 		this.sections.keyServices.innerHTML = markup;
 		this.sections.keyServices.style.display = "block";
+	},
+	_setQuickspotDataStore: function(name, getDataCallback){
+
+		// init datastore if needed
+		if (typeof this.qs.datastores[name] === "undefined"){
+			var dataSet = getDataCallback();
+			var datastore = quickspot.datastore({data: dataSet});
+			this.qs.datastores[name] = datastore.store;
+		}
+
+		// Set store in to use
+		this.qs.instance.setDatastore(this.qs.datastores[name]);
+
+		// Blank search string
+		this.qs.instance.target.value = "";
 	}
 });
