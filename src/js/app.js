@@ -173,6 +173,9 @@ window.KENT.kentbar.closeMenus = function(){
 		window.KENT.kentbar.app.bar.menu.hide();
 	}
 };
+window.KENT.kentbar.toggleMenu = function(menu_name, trigger){
+	window.KENT.kentbar.app.bar.toggleMenu(menu_name,trigger);
+};
 
 module.exports = app;
 app.init();

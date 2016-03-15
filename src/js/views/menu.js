@@ -70,12 +70,14 @@ module.exports = BaseView.extend({
 		// display the menu
 		this.el.style.display = "block";
 		this.isOpen = true;
+		helper.addClass(document.body,"show-kentbar-menu");
 		this.trigger("menu:open");
 	},
 	hide: function(){
 		// hide the menu
 		this.el.style.display = "none";
 		this.isOpen = false;
+		helper.removeClass(document.body,"show-kentbar-menu");
 		this.trigger("menu:close");
 	},
 	render: function (menu) {

@@ -4,7 +4,7 @@ module.exports = new function(){
 			return;
 		}
 		if (!this.hasClass(node, nclass)){
-			node.className = node.className + " " + nclass;
+			node.className = (node.className + " " + nclass).trim();
 		}
 	};
 
@@ -12,7 +12,7 @@ module.exports = new function(){
 		if (typeof node === "undefined" || node === null){
 			return;
 		}
-		node.className = node.className.replace(new RegExp("(^|\\s)" + nclass + "(\\s|$)"), "");
+		node.className = node.className.replace(new RegExp("(^|\\s)" + nclass + "(\\s|$)"), "").trim();
 		return;
 	};
 

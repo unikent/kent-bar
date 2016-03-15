@@ -53,7 +53,7 @@
 			margin-bottom: 12px;
 		}
 		.quickspot-results {
-			max-height: 50vh;
+			max-height: calc(100vh - #{($kentbar-height + 57px)});
 			overflow:auto;
 			position: relative;
 		}
@@ -129,7 +129,7 @@
 			}
 
 			.quickspot-results {
-				max-height:236px;
+				max-height:251px;
 			}
 
 			height:     auto;
@@ -144,5 +144,12 @@
 
 			box-shadow: 1px 1px 3px #BFBFBF;
 		}
+	}
+}
+
+body.show-kentbar-menu{
+	overflow-y: hidden;
+	@include media-breakpoint-up(md){
+		overflow-y: auto;
 	}
 }
