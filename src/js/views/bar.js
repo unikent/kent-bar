@@ -18,8 +18,13 @@ module.exports = BaseView.extend({
 	},
 
 	menuClick: function(e){
-		e.preventDefault();
 		var target = e.target;
+
+		// Don't act if link has no action
+		if(!target.hasAttribute("data-action")) return;
+
+		// Prevent defaults
+		e.preventDefault();
 
 		// Create menu now that we need it
 		if (!this.menu){
@@ -43,10 +48,10 @@ module.exports = BaseView.extend({
 
 		// update clicked links
 		e.target.setAttribute("aria-expanded", "true");
-		helper.addClass(e.target, "in");
+		helper.addClass(target, "in");
 
 		// toggle menu itself
-		this.menu.open(e.target.getAttribute("data-action"));
+		this.menu.open(target.getAttribute("data-action"));
 
 		return false;
 	},

@@ -12,15 +12,5 @@ module.exports = baseModel.extend({
 		this.__searchvalues = this._parseQuickspotString(response.title + " " + response.tags.join(" "));
 
 		return response;
-	},
-	_parseQuickspotString: function(str){
-		str = str.toLowerCase();
-		// remove ' " ( ) , . ?
-		str = str.replace(/(\"|\'|\,|\.|\)|\(|\-)/g, "");
-		// & = and
-		str = str.replace(/\&/g, "and");
-
-		return str;
 	}
-
 });
