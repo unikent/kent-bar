@@ -29,6 +29,7 @@
 		font-size:        1.2rem;
 		float:            right;
 		width:            $kentbar-height;
+		height:           $kentbar-height;
 		cursor:           pointer;
 		&:active,&:focus{
 			outline: none;
@@ -109,7 +110,7 @@
 				display:       inline-block;
 				background:    none;
 				padding:       0;
-				line-height:   $kentbar-height;
+				line-height:   $kentbar-height-desktop;
 				color:         #fff;
 				margin-left:   .5em;
 				border-bottom: 0px;

@@ -1,3 +1,23 @@
+try {
+	new window.CustomEvent("test");
+} catch(e) {
+	var CustomEvent = function(event, params) {
+		var evt;
+		params = params || {
+				bubbles: false,
+				cancelable: false,
+				detail: undefined
+			};
+
+		evt = document.createEvent("CustomEvent");
+		evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+		return evt;
+	};
+
+	CustomEvent.prototype = window.Event.prototype;
+	window.CustomEvent = CustomEvent; // expose definition to window
+}
+
 var Backbone = require("exoskeleton"),
 	Bar = require("./views/bar.js"),
 	NV = require("backbone.nativeview"),
@@ -12,6 +32,7 @@ var app = {
 	services: null,
 	departments:null,
 	container:null,
+	bar:null,
 
 	init: function () {
 		"use strict";
@@ -23,7 +44,7 @@ var app = {
 		this.departments = new DepartmentsCollection();
 
 		document.addEventListener("DOMContentLoaded", function () {
-			var bar, barEl;
+			var barEl;
 
 			if (container === false) {
 				barEl = document.createElement("div");
@@ -35,11 +56,12 @@ var app = {
 				container = "#kent-bar";
 			}
 			app.container = document.querySelector(container);
-			bar = new Bar({el: container});
+			app.bar = new Bar({el: container});
 			if (window.KENT.kentbar.config.render){
-				bar.render();
+				app.bar.render();
 			}
-			bar.services = app.services;
+			app.bar.app = app;
+			app.bar.services = app.services;
 			app.insertStyles();
 
 			app.services.fetch({reset:true});
@@ -140,6 +162,11 @@ if (typeof window.KENT.kentbar.config === "object"){
 }
 
 window.KENT.kentbar.app = app;
-
+window.KENT.kentbar.closeMenus = function(){
+	window.KENT.kentbar.app.bar.mobileMenuClose();
+	if(window.KENT.kentbar.app.bar.menu) {
+		window.KENT.kentbar.app.bar.menu.hide();
+	}
+};
 module.exports = app;
 app.init();
