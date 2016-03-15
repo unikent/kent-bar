@@ -2,6 +2,7 @@
 	font-size: 16px;
 	background: $brand-primary;
 	color: #fff;
+	min-height: $kentbar-height;
 	font-family: $font-family-sans-serif;
 
 	a.navbar-brand {
@@ -24,16 +25,19 @@
 
 	button.audience-menu {
 		background-color: lighten($brand-primary, 3%);
-		color:            #fff;
-		border:           none;
-		font-size:        1.2rem;
-		float:            right;
-		width:            $kentbar-height;
-		height:           $kentbar-height;
-		cursor:           pointer;
+		color: #fff;
+		border: none;
+		font-size: 1.2rem;
+		float: right;
+		height: $kentbar-height;
+		width:  $kentbar-height;
+		cursor: pointer;
+		box-sizing: border-box;
+
 		&:active,&:focus{
 			outline: none;
 		}
+
 	}
 
 	nav.audience-nav-links {
@@ -41,6 +45,7 @@
 		height:0;
 		overflow:hidden;
 		transition: height 200ms;
+		clear: both;
 
 		a {	
 			cursor: pointer;
@@ -75,7 +80,7 @@
 
 	&.in {
 		nav.audience-nav-links {
-			height: 172px;
+			height: 164px;
 			box-shadow: 1px 1px 3px #BFBFBF;
 			border-bottom: 1px solid #ccc;
 		}

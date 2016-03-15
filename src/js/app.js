@@ -60,8 +60,12 @@ var app = {
 			if (window.KENT.kentbar.config.render){
 				app.bar.render();
 			}
-			app.bar.app = app;
-			app.bar.services = app.services;
+
+			bar.collections = {
+				"services": app.services,
+				"departments": app.departments
+			};
+
 			app.insertStyles();
 
 			app.services.fetch({reset:true});
@@ -162,11 +166,13 @@ if (typeof window.KENT.kentbar.config === "object"){
 }
 
 window.KENT.kentbar.app = app;
+
 window.KENT.kentbar.closeMenus = function(){
 	window.KENT.kentbar.app.bar.mobileMenuClose();
 	if(window.KENT.kentbar.app.bar.menu) {
 		window.KENT.kentbar.app.bar.menu.hide();
 	}
 };
+
 module.exports = app;
 app.init();

@@ -9,7 +9,7 @@ module.exports = BaseView.extend({
 		"click button.audience-menu": "mobileMenuToggle",
 		"click nav.audience-nav-links a": "menuClick"
 	},
-	services: null,
+	collections: null,
 	navLinksEl: null,
 	menu: null,
 
@@ -27,10 +27,10 @@ module.exports = BaseView.extend({
 		if(action !== null) {
 			e.preventDefault();
 
-			// Create menu now that we need it
-			if (!this.menu) {
+		// Create menu now that we need it
+			if (!this.menu){
 				// create markup
-				this.menu = new Menu({services: this.services});
+				this.menu = new Menu(this.collections);
 				this.el.appendChild(this.menu.el);
 
 				var that = this;
@@ -53,9 +53,8 @@ module.exports = BaseView.extend({
 			// update clicked links
 			e.target.setAttribute("aria-expanded", "true");
 			helper.addClass(e.target, "in");
-			var menu = e.target.getAttribute("data-action");
 			// toggle menu itself
-			this.menu.open(menu);
+			this.menu.open(action);
 		}else{
 			this.menu.hide();
 		}
