@@ -32,14 +32,14 @@ module.exports = BaseView.extend({
 		var that = this;
 
 		this.qs.instance.target.addEventListener("quickspot:showresults", function(){
-			that.sections.keyServices.style.display = 'none';
-		});	
+			that.sections.keyServices.style.display = "none";
+		});
 		this.qs.instance.target.addEventListener("quickspot:hideresults", function(){
-			that.sections.keyServices.style.display = 'block';
+			that.sections.keyServices.style.display = "block";
 		});
 
 		// Close on click off
-	
+
 		document.body.addEventListener("click", function(e){
 			if (!helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector("#kent-bar-menu")) && !helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector(".audience-nav-links"))){
 				that.hide();
@@ -79,13 +79,11 @@ module.exports = BaseView.extend({
 		this.trigger("menu:close");
 	},
 	render: function (menu) {
-
-		if(menu === "departments"){
+		if (menu === "departments"){
 			this.renderDepartments(menu);
-		}else{
+		} else {
 			this.renderServices(menu);
 		}
-		
 	},
 	renderServices: function(menu){
 		var here = this;
@@ -105,7 +103,6 @@ module.exports = BaseView.extend({
 
 		this.departments.loaded.then(function(depts){
 			here._setQuickspotDataStore(type, function(){
-				console.log(depts);
 				return depts.models;
 			});
 		});
@@ -115,9 +112,9 @@ module.exports = BaseView.extend({
 
 		// init datastore if needed
 		if (typeof this.qs.datastores[name] === "undefined"){
-				var dataSet = getDataCallback();
-				var datastore = quickspot.datastore({data: dataSet});
-				this.qs.datastores[name] = datastore.store;
+			var dataSet = getDataCallback();
+			var datastore = quickspot.datastore({data: dataSet});
+			this.qs.datastores[name] = datastore.store;
 		}
 
 		// Set store in to use
@@ -134,10 +131,10 @@ module.exports = BaseView.extend({
 	renderServicesSearch: function(type){
 		// set placeholder
 		this.qs.instance.target.placeholder = "Search " + type + " systems and services...";
-		
+
 		var here = this;
 		this._setQuickspotDataStore(type, function(){
-				return here.services.filterWithTags(["general", type]);
+			return here.services.filterWithTags(["general", type]);
 		});
 	},
 	renderKeyServices: function(services){
@@ -147,6 +144,6 @@ module.exports = BaseView.extend({
 		});
 
 		this.sections.keyServices.innerHTML = markup;
-		this.sections.keyServices.style.display = 'block';
+		this.sections.keyServices.style.display = "block";
 	}
 });

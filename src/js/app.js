@@ -37,7 +37,7 @@ var app = {
 			app.container = document.querySelector(container);
 			bar = new Bar({el: container});
 			bar.render();
-			
+
 			bar.collections = {
 				"services": app.services,
 				"departments": app.departments

@@ -2,9 +2,9 @@ var Backbone = require("exoskeleton"),
 	baseCollection = require("./base"),
 	ServiceModel = require("../models/service");
 
-if(typeof Promise === 'undefined'){
+if (typeof Promise === "undefined"){
 	var Promise = require("es6-promise").Promise;
-} 
+}
 
 module.exports = baseCollection.extend({
 
