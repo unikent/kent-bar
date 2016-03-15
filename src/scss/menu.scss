@@ -1,13 +1,13 @@
 #kent-bar, .kent-bar {
 	#kent-bar-menu {
-		position:fixed;
-		z-index:99;
-		width: 100vw;
-		height: calc(100vh - #{$bar-height});
-		background:#fff;
-		left: 0;
-		top: $bar-height;
-		color: $brand-primary;
+		position:   fixed;
+		z-index:    99;
+		width:      100vw;
+		height:     calc(100vh - #{$kentbar-height});
+		background: #fff;
+		left:       0;
+		top:        $kentbar-height;
+		color:      $brand-primary;
 		box-sizing: border-box;
 
 		.search-services {
@@ -133,13 +133,12 @@
 
 			height:auto;
 			position:absolute;
-			top: $bar-height+10px;
+			top:        $kentbar-height+10px;
 			right: 10px;
 			left: auto;
 			width: 600px;
 			max-width:50%;
-
-			border: 1px solid #ccc;
+			border:     1px solid #ccc;
 
 			box-shadow: 1px 1px 3px #BFBFBF;
 		}

@@ -2,7 +2,7 @@
 	font-size: 16px;
 	background: $brand-primary;
 	color: #fff;
-	min-height: $bar-height;
+	min-height: $kentbar-height;
 	font-family: $font-family-sans-serif;
 
 	a.navbar-brand {
@@ -29,8 +29,8 @@
 		border: none;
 		font-size: 1.2rem;
 		float: right;
-		height: $bar-height;
-		width: $bar-height;
+		height: $kentbar-height;
+		width:  $kentbar-height;
 		cursor: pointer;
 		box-sizing: border-box;
 
@@ -41,12 +41,12 @@
 	}
 
 	nav.audience-nav-links {
+		width: 100%;
 		height:0;
 		overflow:hidden;
 		transition: height 200ms;
 		clear: both;
-		box-shadow: 1px 1px 3px #BFBFBF;
-		border-bottom: 1px solid #ccc;
+
 
 
 		a {	
@@ -82,7 +82,9 @@
 
 	&.in {
 		nav.audience-nav-links {
-			height: 164px;
+			height: 172px;
+			box-shadow: 1px 1px 3px #BFBFBF;
+			border-bottom: 1px solid #ccc;
 		}
 		button.audience-menu::before{
 			content: ""; 
@@ -94,7 +96,15 @@
 		button.audience-menu {
 			display:none;
 		}
+
+		&.in nav.audience-nav-links {
+			height:auto;
+			box-shadow: none;
+			border-bottom: none;
+		}
+
 		nav.audience-nav-links {
+			width: auto;
 			box-shadow: none;
 			border-bottom: none;
 			height:auto;
@@ -103,19 +113,15 @@
 			margin-right: 20px;
 			overflow:visible;
 
-			&.in {
-				height:auto;
-			}
-
 			a {	
-				display:inline-block;
-				background: none;
-				padding:0;
-				line-height: $bar-height;
-				color: #fff;
-				margin-left: .5em;
-				border-bottom:0px;
-				position: relative;
+				display:       inline-block;
+				background:    none;
+				padding:       0;
+				line-height:   $kentbar-height;
+				color:         #fff;
+				margin-left:   .5em;
+				border-bottom: 0px;
+				position:      relative;
 
 				&:hover{
 					color: #FFF;

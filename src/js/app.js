@@ -36,7 +36,10 @@ var app = {
 			}
 			app.container = document.querySelector(container);
 			bar = new Bar({el: container});
-			bar.render();
+
+			if (window.KENT.kentbar.config.render){
+				bar.render();
+			}
 
 			bar.collections = {
 				"services": app.services,
@@ -109,6 +112,7 @@ window.KENT.kentbar  = window.KENT.kentbar || {};
 
 window.KENT.kentbar.defaults = {
 	target: false,
+	render:true,
 	components: [
 		"student",
 		"staff",

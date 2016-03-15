@@ -43,6 +43,10 @@ module.exports = {
 				dest: "build/test/boot.html"
 			},
 			{
+				src: "src/theme.html",
+				dest: "build/test/theme.html"
+			},
+			{
 				expand: true,
 				cwd: "src/public/",
 				src: ["**"],
@@ -64,6 +68,10 @@ module.exports = {
 				dest: "build/dev/boot.html"
 			},
 			{
+				src: "src/theme.html",
+				dest: "build/dev/theme.html"
+			},
+			{
 				expand: true,
 				cwd: "src/public/",
 				src: ["**"],
@@ -83,6 +91,10 @@ module.exports = {
 			{
 				src: "src/boot.html",
 				dest: "build/deploy/boot.html"
+			},
+			{
+				src: "src/theme.html",
+				dest: "build/deploy/theme.html"
 			},
 			{
 				expand: true,
