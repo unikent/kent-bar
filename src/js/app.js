@@ -37,7 +37,12 @@ var app = {
 			app.container = document.querySelector(container);
 			bar = new Bar({el: container});
 			bar.render();
-			bar.services = app.services;
+			
+			bar.collections = {
+				"services": app.services,
+				"departments": app.departments
+			};
+
 			app.insertStyles();
 
 			app.services.fetch({reset:true});

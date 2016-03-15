@@ -9,10 +9,9 @@ module.exports = BaseView.extend({
 		"click button.audience-menu": "mobileMenuToggle",
 		"click nav.audience-nav-links a": "menuClick"
 	},
-	services: null,
+	collections: null,
 	navLinksEl: null,
 	menu: null,
-
 
 	initialize: function(){
 		helper.addClass(this.el, "kent-bar");
@@ -24,7 +23,7 @@ module.exports = BaseView.extend({
 		// Create menu now that we need it
 		if (!this.menu){
 			// create markup
-			this.menu = new Menu({services: this.services});
+			this.menu = new Menu(this.collections);
 			this.el.appendChild(this.menu.el);
 
 			var that = this;

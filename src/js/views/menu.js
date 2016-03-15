@@ -11,6 +11,7 @@ module.exports = BaseView.extend({
 		this.el.id = "kent-bar-menu";
 		this.el.innerHTML = template();
 		this.services = data.services;
+		this.departments = data.departments;
 
 		// containers for sections
 		this.sections = {
@@ -28,8 +29,17 @@ module.exports = BaseView.extend({
 			display_handler: this.renderServiceResult
 		});
 
-		// Close on click off
 		var that = this;
+
+		this.qs.instance.target.addEventListener("quickspot:showresults", function(){
+			that.sections.keyServices.style.display = 'none';
+		});	
+		this.qs.instance.target.addEventListener("quickspot:hideresults", function(){
+			that.sections.keyServices.style.display = 'block';
+		});
+
+		// Close on click off
+	
 		document.body.addEventListener("click", function(e){
 			if (!helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector("#kent-bar-menu")) && !helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector(".audience-nav-links"))){
 				that.hide();
@@ -40,6 +50,7 @@ module.exports = BaseView.extend({
 	currentMenu: false,
 	isOpen: false,
 	services: false,
+	departments: false,
 	sections: {},
 	qs: { datastores: {}},
 	open: function(menu){
@@ -68,18 +79,54 @@ module.exports = BaseView.extend({
 		this.trigger("menu:close");
 	},
 	render: function (menu) {
-		// draw the menu
+
+		if(menu === "departments"){
+			this.renderDepartments(menu);
+		}else{
+			this.renderServices(menu);
+		}
+		
+	},
+	renderServices: function(menu){
 		var here = this;
 		this.services.loaded.then(function(services){
 			var user_services = [];
 			if (typeof services.key_services[menu] !== "undefined"){
 				user_services = services.key_services[menu].default;
 			}
-
 			here.renderKeyServices(user_services);
-
 			here.renderServicesSearch(menu);
 		});
+	},
+	renderDepartments: function(type){
+		var here = this;
+
+		this.qs.instance.target.placeholder = "Search departments...";
+
+		this.departments.loaded.then(function(depts){
+			here._setQuickspotDataStore(type, function(){
+				console.log(depts);
+				return depts.models;
+			});
+		});
+		this.renderKeyServices([]);
+	},
+	_setQuickspotDataStore: function(name, getDataCallback){
+
+		// init datastore if needed
+		if (typeof this.qs.datastores[name] === "undefined"){
+				var dataSet = getDataCallback();
+				var datastore = quickspot.datastore({data: dataSet});
+				this.qs.datastores[name] = datastore.store;
+		}
+
+		// Set store in to use
+		this.qs.instance.datastore = this.qs.datastores[name];
+
+		// set defaults
+		this.qs.instance.lastValue = "";
+		this.qs.instance.target.value = "";
+		this.qs.instance.container.style.display = "none";
 	},
 	renderServiceResult: function(service){
 		return service.get("title");
@@ -87,23 +134,19 @@ module.exports = BaseView.extend({
 	renderServicesSearch: function(type){
 		// set placeholder
 		this.qs.instance.target.placeholder = "Search " + type + " systems and services...";
-		this.qs.instance.target.value = "";
-
-		if (typeof this.qs.datastores[type] === "undefined"){
-			var payload = this.services.filterWithTags(["general", type]);
-			var datastore = quickspot.datastore({data: payload});
-			this.qs.datastores[type] = datastore.store;
-		}
-		this.qs.instance.datastore = this.qs.datastores[type];
-		this.qs.instance.lastValue = "";
-		this.qs.instance.container.style.display = "none";
-
+		
+		var here = this;
+		this._setQuickspotDataStore(type, function(){
+				return here.services.filterWithTags(["general", type]);
+		});
 	},
 	renderKeyServices: function(services){
 		var markup = "";
 		services.forEach(function(service){
 			markup += "<a href=\"" + service.get("link") + "\" class=\"key-service " + service.get("icon") + "\">" + service.get("title") + "</a>";
 		});
+
 		this.sections.keyServices.innerHTML = markup;
+		this.sections.keyServices.style.display = 'block';
 	}
 });
