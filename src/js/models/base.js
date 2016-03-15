@@ -3,7 +3,9 @@ var Backbone = require("exoskeleton"),
 
 module.exports = Backbone.Model.extend({
 	api: api,
+
 	_parseQuickspotString: function(str){
+
 		str = str.toLowerCase();
 		// remove ' " ( ) , . ?
 		str = str.replace(/(\"|\'|\,|\.|\)|\(|\-)/g, "");

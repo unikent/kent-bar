@@ -1,13 +1,13 @@
 try {
 	new window.CustomEvent("test");
-} catch(e) {
+} catch (e) {
 	var CustomEvent = function(event, params) {
 		var evt;
 		params = params || {
-				bubbles: false,
-				cancelable: false,
-				detail: undefined
-			};
+			bubbles: false,
+			cancelable: false,
+			detail: undefined
+		};
 
 		evt = document.createEvent("CustomEvent");
 		evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
@@ -61,7 +61,7 @@ var app = {
 				app.bar.render();
 			}
 
-			bar.collections = {
+			app.bar.collections = {
 				"services": app.services,
 				"departments": app.departments
 			};
@@ -169,7 +169,7 @@ window.KENT.kentbar.app = app;
 
 window.KENT.kentbar.closeMenus = function(){
 	window.KENT.kentbar.app.bar.mobileMenuClose();
-	if(window.KENT.kentbar.app.bar.menu) {
+	if (window.KENT.kentbar.app.bar.menu) {
 		window.KENT.kentbar.app.bar.menu.hide();
 	}
 };

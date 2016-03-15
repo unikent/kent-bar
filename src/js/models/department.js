@@ -9,9 +9,11 @@ module.exports = baseModel.extend({
 			delete response.url;
 		}
 
-		// only have title to search on so far
-		this.__keyvalue	= this._parseQuickspotString(response.title);
-		this.__searchvalues = this._parseQuickspotString(response.title);
+		if (typeof response.title !== "undefined") {
+			// only have title to search on so far
+			this.__keyvalue = this._parseQuickspotString(response.title);
+			this.__searchvalues = this.__keyvalue;
+		}
 
 		return response;
 	}

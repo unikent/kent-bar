@@ -2,7 +2,6 @@
 	font-size: 16px;
 	background: $brand-primary;
 	color: #fff;
-	min-height: $kentbar-height;
 	font-family: $font-family-sans-serif;
 
 	a.navbar-brand {
@@ -80,12 +79,12 @@
 
 	&.in {
 		nav.audience-nav-links {
-			height: 164px;
+			height: 175px;
 			box-shadow: 1px 1px 3px #BFBFBF;
 			border-bottom: 1px solid #ccc;
 		}
 		button.audience-menu::before{
-			content: ""; 
+			content: $kf-close;
 		}
 
 	}

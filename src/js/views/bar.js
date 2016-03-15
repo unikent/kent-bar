@@ -24,7 +24,7 @@ module.exports = BaseView.extend({
 		var target = e.target;
 		var action = e.target.getAttribute("data-action");
 
-		if(action !== null) {
+		if (action !== null) {
 			e.preventDefault();
 
 		// Create menu now that we need it
@@ -55,7 +55,7 @@ module.exports = BaseView.extend({
 			helper.addClass(e.target, "in");
 			// toggle menu itself
 			this.menu.open(action);
-		}else{
+		} else {
 			this.menu.hide();
 		}
 		return false;
