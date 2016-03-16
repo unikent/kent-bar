@@ -3,7 +3,22 @@ var Backbone = require("exoskeleton"),
 
 module.exports = baseModel.extend({
 
+	validate: function(attrs, options) {
+
+		if (typeof attrs.title !== "string"){
+			return "Departments must have a title attribute";
+		}
+
+		if (typeof attrs.url !== "string"){
+			return "Departments must have a url attribute";
+		}
+
+		if (typeof attrs.link !== "undefined"){
+			return "Departments must NOT have a link attribute";
+		}
+	},
 	parse: function (response) {
+
 		if (typeof response.url !== "undefined") {
 			response.link = response.url;
 			delete response.url;
