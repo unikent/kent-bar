@@ -1,6 +1,6 @@
 var BaseView = require("./base"),
 	helper = require("../lib/helper"),
-	quickspot = require("quick-spot"),
+	quickspot = window.KENT.modules.quickspot,
 	template = require("../templates/menu.hbs");
 
 module.exports = BaseView.extend({

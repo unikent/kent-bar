@@ -22,7 +22,8 @@ var Backbone = require("exoskeleton"),
 	Bar = require("./views/bar.js"),
 	NV = require("backbone.nativeview"),
 	ServicesCollection = require("./collections/services"),
-	DepartmentsCollection = require("./collections/departments");
+	DepartmentsCollection = require("./collections/departments"),
+	Quickspot = require("quick-spot");
 
 Backbone.View = NV;
 Backbone.ajax = require("backbone.nativeajax");
@@ -129,6 +130,7 @@ var app = {
 
 window.KENT  = window.KENT || {};
 window.KENT.kentbar  = window.KENT.kentbar || {};
+window.KENT.modules = window.KENT.modules || {};
 
 window.KENT.kentbar.defaults = {
 	target: false,
@@ -176,6 +178,8 @@ window.KENT.kentbar.closeMenus = function(){
 window.KENT.kentbar.toggleMenu = function(menu_name, trigger){
 	window.KENT.kentbar.app.bar.toggleMenu(menu_name, trigger);
 };
+
+window.KENT.modules.quickspot = Quickspot;
 
 module.exports = app;
 app.init();
