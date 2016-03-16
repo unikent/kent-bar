@@ -15,7 +15,7 @@ module.exports = baseCollection.extend({
 	loaded: false,
 
 	url: function () {
-		return this.api.get() + "/v1/departments?flat=true";
+		return this.api.get() + "v1/departments?flat=true";
 	},
 
 	initialize: function () {

@@ -1,6 +1,7 @@
-var BaseView = require("./base"),
+var app = require('../app'),
+	BaseView = require("./base"),
 	helper = require("../lib/helper"),
-	quickspot = require("quick-spot"),
+	quickspot = window.KENT.modules.quickspot,
 	template = require("../templates/menu.hbs");
 
 module.exports = BaseView.extend({
@@ -75,12 +76,14 @@ module.exports = BaseView.extend({
 		// display the menu
 		this.el.style.display = "block";
 		this.isOpen = true;
+		helper.addClass(document.body, "show-kentbar-menu");
 		this.trigger("menu:open");
 	},
 	hide: function(){
 		// hide the menu
 		this.el.style.display = "none";
 		this.isOpen = false;
+		helper.removeClass(document.body, "show-kentbar-menu");
 		this.trigger("menu:close");
 	},
 	render: function (menu) {

@@ -1,17 +1,17 @@
 module.exports = {
 	test: {
 		files: {
-			"build/test/main.css": "src/scss/master.scss"
+			"build/test/assets/main.css": "src/scss/master.scss"
 		}
 	},
 	dev: {
 		files: {
-			"build/dev/main.css": "src/scss/master.scss"
+			"build/dev/assets/main.css": "src/scss/master.scss"
 		}
 	},
 	deploy: {
 		files: {
-			"build/deploy/main.css": "src/scss/master.scss"
+			"build/deploy/assets/main.css": "src/scss/master.scss"
 		}
 	}
 };

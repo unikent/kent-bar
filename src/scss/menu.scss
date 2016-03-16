@@ -7,7 +7,7 @@
 		background: #fff;
 		left:       0;
 		top:        $kentbar-height;
-		color:      $brand-primary;
+		color:      $kent-primary;
 		box-sizing: border-box;
 
 		.search-services {
@@ -52,8 +52,9 @@
 		.user-services-section {
 			margin-bottom: 12px;
 		}
+
 		.kentbar-quickspot-results {
-			max-height: 50vh;
+			max-height: calc(100vh - #{($kentbar-height + 57px)});
 			overflow:auto;
 			position: relative;
 		}
@@ -129,7 +130,8 @@
 			}
 
 			.kentbar-quickspot-results {
-				max-height:236px;
+				max-height:251px;
+
 			}
 
 			height:     auto;
@@ -144,5 +146,12 @@
 
 			box-shadow: 1px 1px 3px #BFBFBF;
 		}
+	}
+}
+
+body.show-kentbar-menu{
+	overflow-y: hidden;
+	@include media-breakpoint-up(md){
+		overflow-y: auto;
 	}
 }

@@ -1,13 +1,28 @@
+
+window.KENT  = window.KENT || {};
+window.KENT.kentbar  = window.KENT.kentbar || {};
+window.KENT.modules = window.KENT.modules || {};
+window.KENT.modules.quickspot  = require("quick-spot");
+
+var Backbone = require("exoskeleton"),
+	Bar = require("./views/bar.js"),
+	NV = require("backbone.nativeview"),
+	ServicesCollection = require("./collections/services"),
+	DepartmentsCollection = require("./collections/departments");
+
+Backbone.View = NV;
+Backbone.ajax = require("backbone.nativeajax");
+
 try {
 	new window.CustomEvent("test");
 } catch (e) {
 	var CustomEvent = function(event, params) {
 		var evt;
 		params = params || {
-			bubbles: false,
-			cancelable: false,
-			detail: undefined
-		};
+				bubbles: false,
+				cancelable: false,
+				detail: undefined
+			};
 
 		evt = document.createEvent("CustomEvent");
 		evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
@@ -18,14 +33,41 @@ try {
 	window.CustomEvent = CustomEvent; // expose definition to window
 }
 
-var Backbone = require("exoskeleton"),
-	Bar = require("./views/bar.js"),
-	NV = require("backbone.nativeview"),
-	ServicesCollection = require("./collections/services"),
-	DepartmentsCollection = require("./collections/departments");
 
-Backbone.View = NV;
-Backbone.ajax = require("backbone.nativeajax");
+window.KENT.kentbar.defaults = {
+	target: false,
+	render:true,
+	components: [
+		"student",
+		"staff",
+		"departments",
+		"alumni"
+	],
+	custom_link: false,
+	styles:{
+		kentfont:true,
+		fonts:true,
+		base:true
+	}
+};
+
+window.KENT.kentbar.styles = {
+	base: "/assets/main.css",
+	kentfont:"https://static-test.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css", //TODO: update to static live once kentfont updated on live
+	fonts:"https://beta.kent.ac.uk/assets/fonts/arial-light.css"
+};
+
+if (typeof window.KENT.kentbar.config === "object"){
+	for (var i in window.KENT.kentbar.defaults){
+		if (window.KENT.kentbar.defaults.hasOwnProperty(i)) {
+			if (typeof window.KENT.kentbar.config[i] === "undefined") {
+				window.KENT.kentbar.config[i] = window.KENT.kentbar.defaults[i];
+			}
+		}
+	}
+} else {
+	window.KENT.kentbar.config = window.KENT.kentbar.defaults;
+}
 
 var app = {
 
@@ -127,43 +169,6 @@ var app = {
 	}
 };
 
-window.KENT  = window.KENT || {};
-window.KENT.kentbar  = window.KENT.kentbar || {};
-
-window.KENT.kentbar.defaults = {
-	target: false,
-	render:true,
-	components: [
-		"student",
-		"staff",
-		"departments",
-		"alumni"
-	],
-	custom_link: false,
-	styles:{
-		kentfont:true,
-		fonts:true,
-		base:true
-	}
-};
-
-window.KENT.kentbar.styles = {
-	base: "/main.css",
-	kentfont:"https://static-test.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css", //TODO: update to static live once kentfont updated on live
-	fonts:"https://beta.kent.ac.uk/assets/fonts/arial-light.css"
-};
-
-if (typeof window.KENT.kentbar.config === "object"){
-	for (var i in window.KENT.kentbar.defaults){
-		if (window.KENT.kentbar.defaults.hasOwnProperty(i)) {
-			if (typeof window.KENT.kentbar.config[i] === "undefined") {
-				window.KENT.kentbar.config[i] = window.KENT.kentbar.defaults[i];
-			}
-		}
-	}
-} else {
-	window.KENT.kentbar.config = window.KENT.kentbar.defaults;
-}
 
 window.KENT.kentbar.app = app;
 
@@ -173,6 +178,11 @@ window.KENT.kentbar.closeMenus = function(){
 		window.KENT.kentbar.app.bar.menu.hide();
 	}
 };
+window.KENT.kentbar.toggleMenu = function(menu_name, trigger){
+	window.KENT.kentbar.app.bar.toggleMenu(menu_name, trigger);
+};
+
+
 
 module.exports = app;
 app.init();
