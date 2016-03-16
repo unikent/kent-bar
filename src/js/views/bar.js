@@ -25,7 +25,7 @@ module.exports = BaseView.extend({
 			}
 		});
 
-		if(typeof window.KENT.kentbar.config.custom_link === "object" &&
+		if (typeof window.KENT.kentbar.config.custom_link === "object" &&
 			typeof window.KENT.kentbar.config.custom_link.title === "string" &&
 			typeof window.KENT.kentbar.config.custom_link.url === "string"
 		){
