@@ -50,6 +50,12 @@ window.KENT.kentbar.defaults = {
 		base:true
 	}
 };
+window.KENT.kentbar.components = {
+	student: {title:"Student", action:"student"},
+	staff: {title:"Staff", action:"staff"},
+	alumni: {title:"Alumni", url:"https://www.kent.ac.uk/alumni/"},
+	departments: {title:"Departments", action:"departments"}
+};
 
 window.KENT.kentbar.styles = {
 	base: "/assets/main.css",
