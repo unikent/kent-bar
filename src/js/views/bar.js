@@ -61,7 +61,6 @@ module.exports = BaseView.extend({
 
 			helper.addClass(trigger, "in");
 			// toggle menu itself
-			console.log(menu_name);
 			this.menu.open(menu_name);
 		} else {
 			this.menu.hide();
