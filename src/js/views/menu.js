@@ -1,4 +1,5 @@
-var BaseView = require("./base"),
+var app = require('../app'),
+	BaseView = require("./base"),
 	helper = require("../lib/helper"),
 	quickspot = window.KENT.modules.quickspot,
 	template = require("../templates/menu.hbs");
