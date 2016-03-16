@@ -1,4 +1,4 @@
-var app = require('../app'),
+var app = require("../app"),
 	BaseView = require("./base"),
 	helper = require("../lib/helper"),
 	quickspot = window.KENT.modules.quickspot,
