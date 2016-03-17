@@ -99,8 +99,8 @@ module.exports = BaseView.extend({
 	showAllToggle: function(e, reset){
 		var target = this.sections.footer.querySelector("a");
 
-		if(e){
-			 e.preventDefault();
+		if (e){
+			e.preventDefault();
 		}
 
 		// Handle reset
