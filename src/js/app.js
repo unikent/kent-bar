@@ -39,9 +39,7 @@ window.KENT.kentbar.defaults = {
 	render:true,
 	components: [
 		"student",
-		"staff",
-		"departments",
-		"alumni"
+		"staff"
 	],
 	custom_link: false,
 	styles:{
@@ -49,6 +47,12 @@ window.KENT.kentbar.defaults = {
 		fonts:true,
 		base:true
 	}
+};
+window.KENT.kentbar.components = {
+	student: {title:"Student", action:"student"},
+	staff: {title:"Staff", action:"staff"},
+	alumni: {title:"Alumni", url:"https://www.kent.ac.uk/alumni/"},
+	departments: {title:"Departments", action:"departments"}
 };
 
 window.KENT.kentbar.styles = {

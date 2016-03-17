@@ -12,11 +12,26 @@ module.exports = BaseView.extend({
 	collections: null,
 	navLinksEl: null,
 	menu: null,
-
+	components: [],
 
 
 	initialize: function(){
+		var that = this;
 		helper.addClass(this.el, "kent-bar");
+
+		window.KENT.kentbar.config.components.forEach(function(i){
+			if (typeof window.KENT.kentbar.components[i] !== "undefined") {
+				that.components.push(window.KENT.kentbar.components[i]);
+			}
+		});
+
+		if (typeof window.KENT.kentbar.config.custom_link === "object" &&
+			typeof window.KENT.kentbar.config.custom_link.title === "string" &&
+			typeof window.KENT.kentbar.config.custom_link.url === "string"
+		){
+			this.components.push(window.KENT.kentbar.config.custom_link);
+		}
+
 	},
 
 	menuClick: function(e){
@@ -93,7 +108,7 @@ module.exports = BaseView.extend({
 	},
 	render: function () {
 		"use strict";
-		this.renderContent(template());
+		this.renderContent(template({components: this.components}));
 	},
 	_clearLinkOpenStates: function(exclude){
 		// Get open links in menu & close them all
