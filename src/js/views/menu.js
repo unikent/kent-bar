@@ -27,7 +27,6 @@ module.exports = BaseView.extend({
 			target: this.el.querySelector("#kent-bar-search"),
 			data: {},
 			disable_occurrence_weighting: true,
-			auto_highlight: true,
 			hide_on_blur: false,
 			display_handler: this.renderSearchResult,
 			click_handler: this.handleSearchClick,
@@ -116,8 +115,15 @@ module.exports = BaseView.extend({
 		});
 		this.renderKeyServices([]);
 	},
-	renderSearchResult: function(service){
-		return service.get("title");
+	renderSearchResult: function(service, qs){
+		result = service.get("title");
+
+		// Highlight split matches
+		qs.lastValue.split(" ").forEach(function(word){
+			result = result.replace(RegExp("(" + word + ")", "i"), "<strong>$1</strong>");
+		});
+			
+		return result;
 	},
 	handleSearchClick: function(service){
 		document.location.href = service.get("link");
@@ -138,7 +144,18 @@ module.exports = BaseView.extend({
 			markup += "<a href=\"" + service.get("link") + "\" class=\"key-service " + service.get("icon") + "\">" + service.get("title") + "</a>";
 		});
 
+
 		this.sections.keyServices.innerHTML = markup;
+
+		var here = this;
+		var x = document.createElement("span")
+		x.innerText = "show all";
+		x.addEventListener("click", function(){
+			console.log("show all");
+			here.qs.instance.showAll();
+		});
+		this.sections.keyServices.appendChild(x);
+
 		this.sections.keyServices.style.display = "block";
 	},
 	_setQuickspotDataStore: function(name, getDataCallback){
