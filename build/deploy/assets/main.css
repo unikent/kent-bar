@@ -147,9 +147,12 @@
     #kent-bar #kent-bar-menu .search-services input:focus, .kent-bar #kent-bar-menu .search-services input:focus {
       border-color: #66afe9;
       outline: none; }
-  #kent-bar #kent-bar-menu .favorites-section, .kent-bar #kent-bar-menu .favorites-section {
+  #kent-bar #kent-bar-menu .footer-section, .kent-bar #kent-bar-menu .footer-section {
     padding: 12px;
-    background: #f5f5f5; }
+    text-align: center; }
+    #kent-bar #kent-bar-menu .footer-section a, .kent-bar #kent-bar-menu .footer-section a {
+      text-decoration: none;
+      color: #005689; }
   #kent-bar #kent-bar-menu .user-services-section, .kent-bar #kent-bar-menu .user-services-section {
     margin-bottom: 12px; }
   #kent-bar #kent-bar-menu .kentbar-quickspot-results, .kent-bar #kent-bar-menu .kentbar-quickspot-results {

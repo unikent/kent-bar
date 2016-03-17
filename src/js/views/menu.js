@@ -21,7 +21,7 @@ module.exports = BaseView.extend({
 			"user": this.el.querySelector(".user-section"),
 			"keyServices": this.el.querySelector(".user-services-section"),
 			"searchServices": this.el.querySelector(".search-services"),
-			"favroites": this.el.querySelector(".favorites-section")
+			"footer": this.el.querySelector(".footer-section")
 		};
 
 		// Boot quickspot instance
@@ -29,7 +29,6 @@ module.exports = BaseView.extend({
 			target: this.el.querySelector("#kent-bar-search"),
 			data: {},
 			disable_occurrence_weighting: true,
-			auto_highlight: true,
 			hide_on_blur: false,
 			display_handler: this.renderSearchResult,
 			click_handler: this.handleSearchClick,
@@ -37,23 +36,32 @@ module.exports = BaseView.extend({
 			safeload: false
 		});
 
-		var that = this;
-
-		this.qs.instance.target.addEventListener("quickspot:showresults", function(){
-			that.sections.keyServices.style.display = "none";
+		// QS search triggers
+		this.qs.instance.target.addEventListener("quickspot:showresults", function(e){
+			menuView.sections.keyServices.style.display = "none";
 		});
-		this.qs.instance.target.addEventListener("quickspot:hideresults", function(){
-			that.sections.keyServices.style.display = "block";
+		this.qs.instance.target.addEventListener("quickspot:hideresults", function(e){
+			menuView.sections.keyServices.style.display = "block";
+		});
+
+		// Show all toggle
+		this.sections.footer.querySelector("a").addEventListener("click", function(e){
+			menuView.showAllToggle(e);
+		});
+		this.on("menu:change", function(){
+			menuView.showAllToggle(false, true);  // reset if menu change
+		});
+		this.qs.instance.target.addEventListener("quickspot:start", function(e){
+			menuView.showAllToggle(e, true); // reset if search is performed
 		});
 
 		// Close on click off
 		document.body.addEventListener("click", function(e){
-			if (!that.isOpen) {return;}
+			if (!menuView.isOpen) {return;}
 			if (!helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector("#kent-bar-menu")) && !helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector(".audience-nav-links"))){
-				that.hide();
+				menuView.hide();
 			}
 		});
-
 	},
 	currentMenu: false,
 	isOpen: false,
@@ -88,6 +96,31 @@ module.exports = BaseView.extend({
 		helper.removeClass(document.body, "show-kentbar-menu");
 		this.trigger("menu:close");
 	},
+	showAllToggle: function(e, reset){
+		var target = this.sections.footer.querySelector("a");
+
+		if (e){
+			e.preventDefault();
+		}
+
+		// Handle reset
+		if (reset === true){
+			target.setAttribute("data-open", "false");
+			target.innerText = "Show all";
+			return;
+		}
+
+		// handle toggle
+		if (target.hasAttribute("data-open") && target.getAttribute("data-open") === "true"){
+			target.setAttribute("data-open", "false");
+			target.innerText = "Show all";
+			this.qs.instance.target.focus();
+		} else {
+			target.setAttribute("data-open", "true");
+			target.innerText = "Hide all";
+			this.qs.instance.showAll();
+		}
+	},
 	render: function (menu) {
 		if (menu === "departments"){
 			this.renderDepartments(menu);
@@ -96,56 +129,70 @@ module.exports = BaseView.extend({
 		}
 	},
 	renderServices: function(menu){
-		var here = this;
 		this.services.loaded.then(function(services){
 			var user_services = [];
 			if (typeof services.key_services[menu] !== "undefined"){
 				user_services = services.key_services[menu].default;
 			}
-			here.renderKeyServices(user_services);
-			here.renderServicesSearch(menu);
+			menuView.renderKeyServices(user_services);
+			menuView.renderServicesSearch(menu);
 		});
 	},
 	renderDepartments: function(type){
-		var here = this;
 
 		this.qs.instance.target.placeholder = "Search departments...";
 
 		this.departments.loaded.then(function(depts){
-			here._setQuickspotDataStore(type, function(){
+			menuView._setQuickspotDataStore(type, function(){
 				return depts.models;
 			});
 		});
 		this.renderKeyServices([]);
 	},
 	renderSearchResult: function(service, qs){
-		if(menuView.currentMenu ==='departments'){
-			return menuView.renderDepartmentsSearchResult(service, qs);
+
+		if (menuView.currentMenu === "departments"){
+			return  menuView.renderDepartmentsSearchResult(service, qs);
 		}
-		return service.get("title");
+
+		// Highlight split matches
+		return menuView.highlightResult(qs.lastValue.split(" "), service.get("title"));
 	},
-	renderDepartmentsSearchResult: function(service, qs){
+	highlightResult: function(search_terms, result_string){
+		var flags;
+		search_terms.forEach(function(word){
+			if (word.length === 0){
+				return;
+			}
+			flags = (word.length === 1) ? "i" : "ig";
+			result_string = result_string.replace(RegExp("(" + word + ")(?![^<]*>|[^<>]*<\/)", flags), "<strong>$1</strong>");
+		});
+		return result_string;
+	},
+	renderDepartmentsSearchResult: function(department, qs){
 		var subtextClass = qs.options.css_class_prefix + "-result-subtext";
 		var subtext = "";
-		var type = service.get("type");
-		var ancestors = service.get("ancestors");
-		if(type === "academic"){
-			if(ancestors.length > 1) {
+		var type = department.get("type");
+		var ancestors = department.get("ancestors");
+		var title =  menuView.highlightResult(qs.lastValue.split(" "), department.get("title"));
+
+		if (type === "academic"){
+			if (ancestors.length > 1) {
 				subtext += ancestors[1].title + " - ";
 			}
-			if(ancestors.length > 0) {
-				subtext += ancestors[0].title.replace(/Faculty of /, '');
+			if (ancestors.length > 0) {
+				subtext += ancestors[0].title.replace(/Faculty of /, "");
 			}
-		}else{
-			if(type==="non-academic"){
-				type="Professional service department";
+		} else {
+			if (type === "non-academic"){
+				type = "Professional service department";
 			}
-			if(ancestors.length > 0) {
+			if (ancestors.length > 0) {
 				subtext += ancestors[0].title + " - ";
 			}
 			subtext += type.charAt(0).toUpperCase() + type.slice(1);
 		}
-		return service.get("title") + "<div class=\"" + subtextClass + "\">" + subtext + "</div>";
+		return title + "<div class=\"" + subtextClass + "\">" + subtext + "</div>";
 	},
 	handleSearchClick: function(service){
 		document.location.href = service.get("link");
@@ -155,9 +202,8 @@ module.exports = BaseView.extend({
 		// set placeholder
 		this.qs.instance.target.placeholder = "Search " + type + " systems and services...";
 
-		var here = this;
 		this._setQuickspotDataStore(type, function(){
-			return here.services.filterWithTags(["general", type]);
+			return menuView.services.filterWithTags(["general", type]);
 		});
 	},
 	renderKeyServices: function(services){
