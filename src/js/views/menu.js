@@ -19,7 +19,7 @@ module.exports = BaseView.extend({
 			"user": this.el.querySelector(".user-section"),
 			"keyServices": this.el.querySelector(".user-services-section"),
 			"searchServices": this.el.querySelector(".search-services"),
-			"favroites": this.el.querySelector(".favorites-section")
+			"footer": this.el.querySelector(".footer-section")
 		};
 
 		// Boot quickspot instance
@@ -35,12 +35,18 @@ module.exports = BaseView.extend({
 		});
 
 		var that = this;
-
+		this.sections.footer.querySelector("a").addEventListener("click", function(e){
+			console.log("tog");
+			that.showAllToggle(e); 
+		});
 		this.qs.instance.target.addEventListener("quickspot:showresults", function(){
+			console.log("show results");
 			that.sections.keyServices.style.display = "none";
 		});
-		this.qs.instance.target.addEventListener("quickspot:hideresults", function(){
+		this.qs.instance.target.addEventListener("quickspot:hideresults", function(e){
+			console.log("hide results");
 			that.sections.keyServices.style.display = "block";
+			that.showAllToggle(e, true); 
 		});
 
 		// Close on click off
@@ -50,7 +56,6 @@ module.exports = BaseView.extend({
 				that.hide();
 			}
 		});
-
 	},
 	currentMenu: false,
 	isOpen: false,
@@ -84,6 +89,22 @@ module.exports = BaseView.extend({
 		this.isOpen = false;
 		helper.removeClass(document.body, "show-kentbar-menu");
 		this.trigger("menu:close");
+	},
+	showAllToggle: function(e, close){
+	//	e.preventDefault();
+		var target = this.sections.footer.querySelector("a");
+
+		console.log(target);
+		if (close === true || !target.hasAttribute("data-open") || target.getAttribute("data-open") === "true"){
+			console.log("close");
+			target.setAttribute("data-open", "false");
+			target.innerText = "Show all";
+		}else{
+			target.setAttribute("data-open", "true");
+			target.innerText = "hide all";
+			console.log("open?");
+			this.qs.instance.showAll();
+		}
 	},
 	render: function (menu) {
 		if (menu === "departments"){
@@ -144,18 +165,7 @@ module.exports = BaseView.extend({
 			markup += "<a href=\"" + service.get("link") + "\" class=\"key-service " + service.get("icon") + "\">" + service.get("title") + "</a>";
 		});
 
-
 		this.sections.keyServices.innerHTML = markup;
-
-		var here = this;
-		var x = document.createElement("span")
-		x.innerText = "show all";
-		x.addEventListener("click", function(){
-			console.log("show all");
-			here.qs.instance.showAll();
-		});
-		this.sections.keyServices.appendChild(x);
-
 		this.sections.keyServices.style.display = "block";
 	},
 	_setQuickspotDataStore: function(name, getDataCallback){
