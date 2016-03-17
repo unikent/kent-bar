@@ -5,9 +5,5 @@ module.exports = {
 		options: {
 			livereload: true
 		}
-	},
-	"lint": {
-		files: ["src/**/*"],
-		tasks: ["eslint"]
 	}
 };

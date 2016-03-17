@@ -39,9 +39,7 @@ window.KENT.kentbar.defaults = {
 	render:true,
 	components: [
 		"student",
-		"staff",
-		"departments",
-		"alumni"
+		"staff"
 	],
 	custom_link: false,
 	styles:{
