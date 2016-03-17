@@ -2,11 +2,13 @@ var app = require("../app"),
 	BaseView = require("./base"),
 	helper = require("../lib/helper"),
 	quickspot = window.KENT.modules.quickspot,
-	template = require("../templates/menu.hbs");
-
+	template = require("../templates/menu.hbs"),
+	menuView = false;
 module.exports = BaseView.extend({
 
 	initialize: function(data){
+
+		menuView = this;
 		// create self
 		this.el = document.createElement("div");
 		this.el.id = "kent-bar-menu";
@@ -34,26 +36,30 @@ module.exports = BaseView.extend({
 			safeload: false
 		});
 
-		var that = this;
-		this.sections.footer.querySelector("a").addEventListener("click", function(e){
-			console.log("tog");
-			that.showAllToggle(e); 
-		});
-		this.qs.instance.target.addEventListener("quickspot:showresults", function(){
-			console.log("show results");
-			that.sections.keyServices.style.display = "none";
+		// QS search triggers
+		this.qs.instance.target.addEventListener("quickspot:showresults", function(e){
+			menuView.sections.keyServices.style.display = "none";
 		});
 		this.qs.instance.target.addEventListener("quickspot:hideresults", function(e){
-			console.log("hide results");
-			that.sections.keyServices.style.display = "block";
-			that.showAllToggle(e, true); 
+			menuView.sections.keyServices.style.display = "block";
+		});
+
+		// Show all toggle
+		this.sections.footer.querySelector("a").addEventListener("click", function(e){
+			menuView.showAllToggle(e);
+		});
+		this.on("menu:change", function(e){
+			menuView.showAllToggle(e, true);  // reset if menu change
+		});
+		this.qs.instance.target.addEventListener("quickspot:start", function(e){
+			menuView.showAllToggle(e, true); // reset if search is performed
 		});
 
 		// Close on click off
 		document.body.addEventListener("click", function(e){
-			if (!that.isOpen) {return;}
+			if (!menuView.isOpen) {return;}
 			if (!helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector("#kent-bar-menu")) && !helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector(".audience-nav-links"))){
-				that.hide();
+				menuView.hide();
 			}
 		});
 	},
@@ -90,19 +96,24 @@ module.exports = BaseView.extend({
 		helper.removeClass(document.body, "show-kentbar-menu");
 		this.trigger("menu:close");
 	},
-	showAllToggle: function(e, close){
-	//	e.preventDefault();
+	showAllToggle: function(e, reset){
 		var target = this.sections.footer.querySelector("a");
 
-		console.log(target);
-		if (close === true || !target.hasAttribute("data-open") || target.getAttribute("data-open") === "true"){
-			console.log("close");
+		// Handle reset
+		if (reset === true){
 			target.setAttribute("data-open", "false");
 			target.innerText = "Show all";
-		}else{
+			return;
+		}
+
+		// handle toggle
+		if (target.hasAttribute("data-open") && target.getAttribute("data-open") === "true"){
+			target.setAttribute("data-open", "false");
+			target.innerText = "Show all";
+			this.qs.instance.target.focus();
+		} else {
 			target.setAttribute("data-open", "true");
-			target.innerText = "hide all";
-			console.log("open?");
+			target.innerText = "Hide all";
 			this.qs.instance.showAll();
 		}
 	},
@@ -114,37 +125,70 @@ module.exports = BaseView.extend({
 		}
 	},
 	renderServices: function(menu){
-		var here = this;
 		this.services.loaded.then(function(services){
 			var user_services = [];
 			if (typeof services.key_services[menu] !== "undefined"){
 				user_services = services.key_services[menu].default;
 			}
-			here.renderKeyServices(user_services);
-			here.renderServicesSearch(menu);
+			menuView.renderKeyServices(user_services);
+			menuView.renderServicesSearch(menu);
 		});
 	},
 	renderDepartments: function(type){
-		var here = this;
 
 		this.qs.instance.target.placeholder = "Search departments...";
 
 		this.departments.loaded.then(function(depts){
-			here._setQuickspotDataStore(type, function(){
+			menuView._setQuickspotDataStore(type, function(){
 				return depts.models;
 			});
 		});
 		this.renderKeyServices([]);
 	},
 	renderSearchResult: function(service, qs){
-		result = service.get("title");
+
+		if (menuView.currentMenu === "departments"){
+			return  menuView.renderDepartmentsSearchResult(service, qs);
+		}
 
 		// Highlight split matches
-		qs.lastValue.split(" ").forEach(function(word){
-			result = result.replace(RegExp("(" + word + ")", "i"), "<strong>$1</strong>");
+		return menuView.highlightResult(qs.lastValue.split(" "), service.get("title"));
+	},
+	highlightResult: function(search_terms, result_string){
+		var flags;
+		search_terms.forEach(function(word){
+			if (word.length === 0){
+				return;
+			}
+			flags = (word.length === 1) ? "i" : "ig";
+			result_string = result_string.replace(RegExp("(" + word + ")(?![^<]*>|[^<>]*<\/)", flags), "<strong>$1</strong>");
 		});
-			
-		return result;
+		return result_string;
+	},
+	renderDepartmentsSearchResult: function(department, qs){
+		var subtextClass = qs.options.css_class_prefix + "-result-subtext";
+		var subtext = "";
+		var type = department.get("type");
+		var ancestors = department.get("ancestors");
+		var title =  menuView.highlightResult(qs.lastValue.split(" "), department.get("title"));
+
+		if (type === "academic"){
+			if (ancestors.length > 1) {
+				subtext += ancestors[1].title + " - ";
+			}
+			if (ancestors.length > 0) {
+				subtext += ancestors[0].title.replace(/Faculty of /, "");
+			}
+		} else {
+			if (type === "non-academic"){
+				type = "Professional service department";
+			}
+			if (ancestors.length > 0) {
+				subtext += ancestors[0].title + " - ";
+			}
+			subtext += type.charAt(0).toUpperCase() + type.slice(1);
+		}
+		return title + "<div class=\"" + subtextClass + "\">" + subtext + "</div>";
 	},
 	handleSearchClick: function(service){
 		document.location.href = service.get("link");
@@ -154,9 +198,8 @@ module.exports = BaseView.extend({
 		// set placeholder
 		this.qs.instance.target.placeholder = "Search " + type + " systems and services...";
 
-		var here = this;
 		this._setQuickspotDataStore(type, function(){
-			return here.services.filterWithTags(["general", type]);
+			return menuView.services.filterWithTags(["general", type]);
 		});
 	},
 	renderKeyServices: function(services){
