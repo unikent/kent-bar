@@ -2,11 +2,13 @@ var app = require("../app"),
 	BaseView = require("./base"),
 	helper = require("../lib/helper"),
 	quickspot = window.KENT.modules.quickspot,
-	template = require("../templates/menu.hbs");
-
+	template = require("../templates/menu.hbs"),
+	menuView = false;
 module.exports = BaseView.extend({
 
 	initialize: function(data){
+
+		menuView = this;
 		// create self
 		this.el = document.createElement("div");
 		this.el.id = "kent-bar-menu";
@@ -116,8 +118,34 @@ module.exports = BaseView.extend({
 		});
 		this.renderKeyServices([]);
 	},
-	renderSearchResult: function(service){
+	renderSearchResult: function(service, qs){
+		if(menuView.currentMenu ==='departments'){
+			return menuView.renderDepartmentsSearchResult(service, qs);
+		}
 		return service.get("title");
+	},
+	renderDepartmentsSearchResult: function(service, qs){
+		var subtextClass = qs.options.css_class_prefix + "-result-subtext";
+		var subtext = "";
+		var type = service.get("type");
+		var ancestors = service.get("ancestors");
+		if(type === "academic"){
+			if(ancestors.length > 1) {
+				subtext += ancestors[1].title + " - ";
+			}
+			if(ancestors.length > 0) {
+				subtext += ancestors[0].title.replace(/Faculty of /, '');
+			}
+		}else{
+			if(type==="non-academic"){
+				type="Professional service department";
+			}
+			if(ancestors.length > 0) {
+				subtext += ancestors[0].title + " - ";
+			}
+			subtext += type.charAt(0).toUpperCase() + type.slice(1);
+		}
+		return service.get("title") + "<div class=\"" + subtextClass + "\">" + subtext + "</div>";
 	},
 	handleSearchClick: function(service){
 		document.location.href = service.get("link");
