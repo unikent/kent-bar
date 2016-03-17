@@ -48,8 +48,8 @@ module.exports = BaseView.extend({
 		this.sections.footer.querySelector("a").addEventListener("click", function(e){
 			menuView.showAllToggle(e);
 		});
-		this.on("menu:change", function(e){
-			menuView.showAllToggle(e, true);  // reset if menu change
+		this.on("menu:change", function(){
+			menuView.showAllToggle(false, true);  // reset if menu change
 		});
 		this.qs.instance.target.addEventListener("quickspot:start", function(e){
 			menuView.showAllToggle(e, true); // reset if search is performed
@@ -98,6 +98,10 @@ module.exports = BaseView.extend({
 	},
 	showAllToggle: function(e, reset){
 		var target = this.sections.footer.querySelector("a");
+
+		if(e){
+			 e.preventDefault();
+		}
 
 		// Handle reset
 		if (reset === true){

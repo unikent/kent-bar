@@ -150,6 +150,9 @@
   #kent-bar #kent-bar-menu .footer-section, .kent-bar #kent-bar-menu .footer-section {
     padding: 12px;
     text-align: center; }
+    #kent-bar #kent-bar-menu .footer-section a, .kent-bar #kent-bar-menu .footer-section a {
+      text-decoration: none;
+      color: #005689; }
   #kent-bar #kent-bar-menu .user-services-section, .kent-bar #kent-bar-menu .user-services-section {
     margin-bottom: 12px; }
   #kent-bar #kent-bar-menu .kentbar-quickspot-results, .kent-bar #kent-bar-menu .kentbar-quickspot-results {

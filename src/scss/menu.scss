@@ -44,9 +44,15 @@
 		.user-section {
 
 		}
+		
 		.footer-section{
 			padding:12px;
 			text-align:center;
+
+			a {
+				text-decoration:none;
+				color: $link-color;
+			}
 
 		}
 
