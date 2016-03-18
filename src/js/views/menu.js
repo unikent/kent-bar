@@ -75,7 +75,7 @@ module.exports = BaseView.extend({
 
 		// Reset show all when QS is search or menu is changed.
 		this.on("menu:change", function(){
-			menuView.showAllToggle(false, true); 
+			menuView.showAllToggle(false, true);
 		});
 		quickspotInstance.on("quickspot:start", function(e){
 			menuView.showAllToggle(e, true);
