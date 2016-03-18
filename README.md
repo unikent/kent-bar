@@ -30,7 +30,7 @@ These options should be defined in a javascript object as below:
 #### Config Options
 
 | Option	| Description				| Default		| Example(s)	|
-|-----------------------------------------------------------------------|
+|---------------|---------------------------------------|-----------------------|---------------|
 | target	| A string selector for the target dom element for the bar to use as its container. If false (default) then a div will be inserted automatically at the top of `<body>`. | false	| "#myBar", "div.my-kent-bar" |
 | render	| Whether the bar should render the contents of the `target` container. This is designed for advanced use where you which to modify or customize the contents of the bar. By setting to false you are responsible for creating the necessary markup for component menus and buttons etc. | true	| true, false |
 | components | An ordered Array of component names for components which you wish the bar to render. Note this value is ignored if `render` is false. Possible components are: 'student', 'staff', 'departments' and 'alumni'. | `["student", "staff" ]` | `["staff","departmetns"]` |
