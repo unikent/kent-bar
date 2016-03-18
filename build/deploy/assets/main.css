@@ -154,14 +154,38 @@
       text-decoration: none;
       color: #005689; }
   #kent-bar #kent-bar-menu .user-services-section, .kent-bar #kent-bar-menu .user-services-section {
-    margin-bottom: 12px; }
+    margin-bottom: 12px;
+    min-height: .9em; }
+    #kent-bar #kent-bar-menu .user-services-section .dept-a-z, .kent-bar #kent-bar-menu .user-services-section .dept-a-z {
+      float: right;
+      font-size: 0.9em;
+      margin-top: -4px;
+      text-decoration: none;
+      color: #005689;
+      position: relative; }
+      #kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover, #kent-bar #kent-bar-menu .user-services-section .dept-a-z.selected, .kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover, .kent-bar #kent-bar-menu .user-services-section .dept-a-z.selected {
+        color: #00263d;
+        background: #f5f5f5; }
+        #kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover::after, #kent-bar #kent-bar-menu .user-services-section .dept-a-z.selected::after, .kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover::after, .kent-bar #kent-bar-menu .user-services-section .dept-a-z.selected::after {
+          padding-left: 11px; }
+      #kent-bar #kent-bar-menu .user-services-section .dept-a-z::after, .kent-bar #kent-bar-menu .user-services-section .dept-a-z::after {
+        display: inline-block;
+        box-sizing: border-box;
+        padding-left: 8px;
+        content: "";
+        font-family: "kentfont", sans-serif;
+        width: 20px;
+        text-align: left;
+        transition: all 300ms;
+        display: inline-block; }
+      #kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover, .kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover {
+        background: none; }
   #kent-bar #kent-bar-menu .kentbar-quickspot-results, .kent-bar #kent-bar-menu .kentbar-quickspot-results {
     max-height: calc(100vh - 102px);
     overflow: auto;
     position: relative; }
   #kent-bar #kent-bar-menu .user-services-section a.key-service, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result, .kent-bar #kent-bar-menu .user-services-section a.key-service, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result {
     box-sizing: border-box;
-    color: #005689;
     display: inline-block;
     padding: 15px 15px 15px 44px;
     width: 100%;
@@ -170,23 +194,14 @@
     text-decoration: none;
     transition: color 300ms, background-color 300ms;
     cursor: pointer;
+    position: relative;
+    color: #005689;
     position: relative; }
-    #kent-bar #kent-bar-menu .user-services-section a.key-service:first-child, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:first-child, .kent-bar #kent-bar-menu .user-services-section a.key-service:first-child, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:first-child {
-      border-top: solid 1px #ccc; }
     #kent-bar #kent-bar-menu .user-services-section a.key-service:hover, #kent-bar #kent-bar-menu .user-services-section a.key-service.selected, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:hover, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result.selected, .kent-bar #kent-bar-menu .user-services-section a.key-service:hover, .kent-bar #kent-bar-menu .user-services-section a.key-service.selected, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:hover, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result.selected {
       color: #00263d;
       background: #f5f5f5; }
       #kent-bar #kent-bar-menu .user-services-section a.key-service:hover::after, #kent-bar #kent-bar-menu .user-services-section a.key-service.selected::after, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:hover::after, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result.selected::after, .kent-bar #kent-bar-menu .user-services-section a.key-service:hover::after, .kent-bar #kent-bar-menu .user-services-section a.key-service.selected::after, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:hover::after, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result.selected::after {
         padding-left: 11px; }
-    #kent-bar #kent-bar-menu .user-services-section a.key-service::before, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::before, .kent-bar #kent-bar-menu .user-services-section a.key-service::before, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::before {
-      display: block;
-      position: absolute;
-      left: 12px;
-      top: 0;
-      font-size: 20px;
-      line-height: 46px;
-      width: 25px;
-      text-align: center; }
     #kent-bar #kent-bar-menu .user-services-section a.key-service::after, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::after, .kent-bar #kent-bar-menu .user-services-section a.key-service::after, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::after {
       display: inline-block;
       box-sizing: border-box;
@@ -198,7 +213,19 @@
       transition: all 300ms;
       position: absolute;
       right: 16px;
-      top: 16px; }
+      top: 16px;
+      top: calc(50% - 10px); }
+    #kent-bar #kent-bar-menu .user-services-section a.key-service:first-child, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:first-child, .kent-bar #kent-bar-menu .user-services-section a.key-service:first-child, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:first-child {
+      border-top: solid 1px #ccc; }
+    #kent-bar #kent-bar-menu .user-services-section a.key-service::before, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::before, .kent-bar #kent-bar-menu .user-services-section a.key-service::before, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::before {
+      display: block;
+      position: absolute;
+      left: 12px;
+      top: 0;
+      font-size: 20px;
+      line-height: 46px;
+      width: 25px;
+      text-align: center; }
   #kent-bar #kent-bar-menu div.kentbar-quickspot-results a.kentbar-quickspot-result, .kent-bar #kent-bar-menu div.kentbar-quickspot-results a.kentbar-quickspot-result {
     padding-left: 15px;
     background: #fff; }
@@ -218,7 +245,9 @@
       border: 1px solid #ccc;
       box-shadow: 1px 1px 3px #BFBFBF; }
       #kent-bar #kent-bar-menu .user-services-section, .kent-bar #kent-bar-menu .user-services-section {
-        margin: 0 12px 12px; }
+        padding: 0 12px 12px;
+        margin-bottom: 0;
+        border-bottom: solid 1px #d0d0d0; }
         #kent-bar #kent-bar-menu .user-services-section a.key-service, .kent-bar #kent-bar-menu .user-services-section a.key-service {
           width: 50%;
           border-bottom: none;
