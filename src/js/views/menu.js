@@ -1,14 +1,21 @@
 var app = require("../app"),
 	BaseView = require("./base"),
 	helper = require("../lib/helper"),
-	quickspot = window.KENT.modules.quickspot,
+	Quickspot = window.KENT.modules.quickspot,
 	template = require("../templates/menu.hbs"),
 	menuView = false;
+
 module.exports = BaseView.extend({
-
+	currentMenu: false,
+	isOpen: false,
+	services: false,
+	departments: false,
+	sections: {},
+	qs: { datastores: {}},
 	initialize: function(data){
-
+		// make avaiable
 		menuView = this;
+
 		// create self
 		this.el = document.createElement("div");
 		this.el.id = "kent-bar-menu";
@@ -25,7 +32,19 @@ module.exports = BaseView.extend({
 		};
 
 		// Boot quickspot instance
-		this.qs.instance = quickspot.attach({
+		this.qs.instance = this.initQuickspot();
+
+		// Close kentbar menu when clicked off
+		document.body.addEventListener("click", function(e){
+			if (!menuView.isOpen) {return;}
+			if (!helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector("#kent-bar-menu")) && !helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector(".audience-nav-links"))){
+				menuView.hide();
+			}
+		});
+	},
+	initQuickspot: function(){
+		// Boot QS itself
+		var quickspotInstance = Quickspot.attach({
 			target: this.el.querySelector("#kent-bar-search"),
 			data: {},
 			disable_occurrence_weighting: true,
@@ -36,39 +55,34 @@ module.exports = BaseView.extend({
 			safeload: false
 		});
 
-		// QS search triggers
-		this.qs.instance.target.addEventListener("quickspot:showresults", function(e){
+		// Focus on QS input when section is opened
+		this.on("menu:open", function(){
+			quickspotInstance.target.focus();
+		});
+
+		// Hide key services when quickspot is displaying results.
+		quickspotInstance.on("quickspot:showresults", function(e){
 			menuView.sections.keyServices.style.display = "none";
 		});
-		this.qs.instance.target.addEventListener("quickspot:hideresults", function(e){
+		quickspotInstance.on("quickspot:hideresults", function(e){
 			menuView.sections.keyServices.style.display = "block";
 		});
 
-		// Show all toggle
+		// Toggle QS to show all.
 		this.sections.footer.querySelector("a").addEventListener("click", function(e){
 			menuView.showAllToggle(e);
 		});
+
+		// Reset show all when QS is search or menu is changed.
 		this.on("menu:change", function(){
-			menuView.showAllToggle(false, true);  // reset if menu change
+			menuView.showAllToggle(false, true);
 		});
-		this.qs.instance.target.addEventListener("quickspot:start", function(e){
-			menuView.showAllToggle(e, true); // reset if search is performed
+		quickspotInstance.on("quickspot:start", function(e){
+			menuView.showAllToggle(e, true);
 		});
 
-		// Close on click off
-		document.body.addEventListener("click", function(e){
-			if (!menuView.isOpen) {return;}
-			if (!helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector("#kent-bar-menu")) && !helper.isNodeDecendantOf(e.target, window.KENT.kentbar.app.container.querySelector(".audience-nav-links"))){
-				menuView.hide();
-			}
-		});
+		return quickspotInstance;
 	},
-	currentMenu: false,
-	isOpen: false,
-	services: false,
-	departments: false,
-	sections: {},
-	qs: { datastores: {}},
 	open: function(menu){
 		// handle request to open a given menu
 		if (this.currentMenu === menu && this.isOpen){
@@ -114,7 +128,7 @@ module.exports = BaseView.extend({
 		if (target.hasAttribute("data-open") && target.getAttribute("data-open") === "true"){
 			target.setAttribute("data-open", "false");
 			target.innerText = "Show all";
-			this.qs.instance.target.focus();
+			this.qs.instance.hideResults();
 		} else {
 			target.setAttribute("data-open", "true");
 			target.innerText = "Hide all";
@@ -137,6 +151,7 @@ module.exports = BaseView.extend({
 			menuView.renderKeyServices(user_services);
 			menuView.renderServicesSearch(menu);
 		});
+		this.sections.footer.style.display = "block";
 	},
 	renderDepartments: function(type){
 
@@ -147,7 +162,8 @@ module.exports = BaseView.extend({
 				return depts.models;
 			});
 		});
-		this.renderKeyServices([]);
+		this.sections.footer.style.display = "none";
+		this.sections.keyServices.innerHTML = "<a href=\"https://www.kent.ac.uk/departments/\" class=\"dept-a-z\">Departments A-Z</a>";
 	},
 	renderSearchResult: function(service, qs){
 
@@ -220,7 +236,7 @@ module.exports = BaseView.extend({
 		// init datastore if needed
 		if (typeof this.qs.datastores[name] === "undefined"){
 			var dataSet = getDataCallback();
-			var datastore = quickspot.datastore({data: dataSet});
+			var datastore = Quickspot.datastore({data: dataSet});
 			this.qs.datastores[name] = datastore.store;
 		}
 
