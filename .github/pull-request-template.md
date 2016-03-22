@@ -27,6 +27,7 @@ Description of other PRs/repos that are dependent on what has changed e.g. api.k
 - [ ] Product owner/stakeholders updated (if no Trello/FP ticket)
 
 ### PR: Feature branch -> develop
+Brief summary of what changes have been made
 - Trello: link to trello card *(if applicable)*
 - FootPrints: ticket number *(if applicable)*
 
