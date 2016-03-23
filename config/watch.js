@@ -1,7 +1,7 @@
 module.exports = {
-	livereload: {
+	main: {
 		files: ["src/**/*"],
-		tasks: ["compile"],
+		tasks: ["compile-dev", "compile-test"],
 		options: {
 			livereload: true
 		}

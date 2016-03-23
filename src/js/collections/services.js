@@ -2,19 +2,38 @@ var Backbone = require("exoskeleton"),
 	baseCollection = require("./base"),
 	ServiceModel = require("../models/service");
 
+if (typeof Promise === "undefined"){
+	var Promise = require("es6-promise").Promise;
+}
+
 module.exports = baseCollection.extend({
 
-	cache_key:"services",
+	cache_key:"kentbar.services",
 
 	model: ServiceModel,
+	ready: false,
+	loaded: false,
 
 	url: function () {
-		return this.api.get() + "/v1/services";
+		return this.api.get() + "v1/services";
 	},
 
 	key_services: false,
 
 	initialize: function () {
+		var here = this;
+
+		this.loaded = new Promise(function(success, fail){
+			here.on("reset", function(){
+				here.ready = true;
+				success(here);
+			});
+			here.on("error", function(){
+				here.ready = false;
+				fail(here);
+			});
+		});
+
 		this.on("reset", this.populateKeyServices);
 	},
 
@@ -32,7 +51,7 @@ module.exports = baseCollection.extend({
 				for (group in this.key_services[type]) {
 					if (this.key_services[type].hasOwnProperty(group)) {
 						ks = [];
-						for (var i= 0; i<this.key_services[type][group].length; i++){
+						for (var i = 0; i < this.key_services[type][group].length; i++){
 							ks.push(this.get(this.key_services[type][group][i]));
 						}
 						this.key_services[type][group] = ks;

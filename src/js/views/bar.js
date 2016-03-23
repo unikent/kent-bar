@@ -1,6 +1,7 @@
 var BaseView = require("./base"),
-	helper = require("../lib/helper");
-    template = require("../templates/bar.hbs");
+	helper = require("../lib/helper"),
+	Menu = require("./menu"),
+	template = require("../templates/bar.hbs");
 
 module.exports = BaseView.extend({
 
@@ -8,25 +9,121 @@ module.exports = BaseView.extend({
 		"click button.audience-menu": "mobileMenuToggle",
 		"click nav.audience-nav-links a": "menuClick"
 	},
+	collections: null,
 	navLinksEl: null,
-	menuClick: function(e){
-		//console.log("invoke "+ e.target.innerText);
-	},
-	mobileMenuToggle: function(e){
+	menu: null,
+	components: [],
 
-		// toogle in class + aria states
-		if (helper.hasClass(this.navLinksEl, "in")){
-			e.target.setAttribute("aria-expanded", "false");
-			helper.removeClass(this.navLinksEl, "in");
-		} else {
-			e.target.setAttribute("aria-expanded", "true");
-			helper.addClass(this.navLinksEl, "in");
+
+	initialize: function(){
+		var that = this;
+		helper.addClass(this.el, "kent-bar");
+
+		window.KENT.kentbar.config.components.forEach(function(i){
+			if (typeof window.KENT.kentbar.components[i] !== "undefined") {
+				that.components.push(window.KENT.kentbar.components[i]);
+			}
+		});
+
+		if (typeof window.KENT.kentbar.config.custom_link === "object" &&
+			typeof window.KENT.kentbar.config.custom_link.title === "string" &&
+			typeof window.KENT.kentbar.config.custom_link.url === "string"
+		){
+			this.components.push(window.KENT.kentbar.config.custom_link);
 		}
+
+	},
+
+	menuClick: function(e){
+
+		var target = e.target;
+		var menu_name = e.target.getAttribute("data-action");
+		if (menu_name !== null) {
+			e.preventDefault();
+			this.toggleMenu(menu_name, target);
+			e.target.setAttribute("aria-expanded", "true");
+		}
+		return false;
+	},
+
+	toggleMenu: function(menu_name, trigger){
+		if (menu_name !== null) {
+
+			// Create menu now that we need it
+			if (!this.menu){
+				// create markup
+				this.menu = new Menu(this.collections);
+				this.el.appendChild(this.menu.el);
+
+				var that = this;
+				// listen to its events
+				this.menu.on("menu:open", function (menu) {
+					helper.addClass(that.el, "in");
+					window.dispatchEvent( new CustomEvent("kentbar_menu:open", {detail: {menu: menu}}));
+				});
+				this.menu.on("menu:close", function (menu) {
+					that._clearLinkOpenStates();
+					helper.removeClass(that.el, "in");
+					window.dispatchEvent( new CustomEvent("kentbar_menu:close", {detail: {menu: menu}}));
+				});
+				this.menu.on("menu:change", function (menu) {
+					that._clearLinkOpenStates(menu);
+					window.dispatchEvent( new CustomEvent("kentbar_menu:change", {detail: {menu: menu}}));
+				});
+			}
+
+			// update clicked links
+
+			helper.addClass(trigger, "in");
+			// toggle menu itself
+			this.menu.open(menu_name);
+		} else {
+			this.menu.hide();
+		}
+	},
+
+	mobileMenuToggle: function(e){
+		// toggle in class + aria states on mobile button
+		if (helper.hasClass(this.el, "in")){
+			this.mobileMenuClose();
+		} else {
+			this.mobileMenuOpen();
+		}
+		// menu should close if this was clicked.
+		if (this.menu && this.menu.isOpen){
+			this.menu.hide();
+		}
+	},
+	mobileMenuOpen:function(){
+		var button = this.el.querySelector("button.audience-menu");
+		button.setAttribute("aria-expanded", "true");
+		helper.addClass(this.el, "in");
+		window.dispatchEvent( new CustomEvent("kentbar_mobilemenu:open", {}));
+	},
+	mobileMenuClose:function(){
+		var button = this.el.querySelector("button.audience-menu");
+		button.setAttribute("aria-expanded", "false");
+		helper.removeClass(this.el, "in");
+		window.dispatchEvent( new CustomEvent("kentbar_mobilemenu:close", {}));
 	},
 	render: function () {
 		"use strict";
-		this.renderContent(template());
+		this.renderContent(template({components: this.components}));
+	},
+	_clearLinkOpenStates: function(exclude){
+		// Get open links in menu & close them all
+		var openNodes = this.el.querySelectorAll("nav a.in");
+		for (var c in openNodes){
+			if (openNodes.hasOwnProperty(c)){
+				// if node is the "exclude", don't close it - this is probably the one just activated
+				if (openNodes[c].getAttribute("data-action") === exclude){
+					continue;
+				}
 
-		this.navLinksEl = this.el.querySelector(".audience-nav-links");
+				// close nodes
+				helper.removeClass(openNodes[c], "in");
+				openNodes[c].setAttribute("aria-expanded", "false");
+			}
+		}
 	}
 });

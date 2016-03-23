@@ -1,0 +1,201 @@
+
+@mixin chevron-link( $position:"auto") {
+	color: $link-color;
+	position:relative;
+
+	&:hover, &.selected{
+		color: #00263d;
+		background: $brand-secondary;
+		&::after{
+			padding-left: 11px;
+		}
+	}
+
+	&::after{
+		display: inline-block;
+		box-sizing: border-box;
+		padding-left: 8px;
+		content: $kf-angle-right;
+		font-family:  $font-family-kentfont;
+		width: 20px;
+		text-align: left;
+		transition: all 300ms;
+
+		@if $position == "inline" {
+			display: inline-block;
+		} @else {
+			position: absolute;
+			right:16px;
+			top: 16px;
+			top: calc(50% - 10px); // 10px is half icon size
+		}
+	}
+}
+
+#kent-bar, .kent-bar {
+	#kent-bar-menu {
+		position:   fixed;
+		z-index:    99;
+		width:      100vw;
+		height:     calc(100vh - #{$kentbar-height});
+		background: #fff;
+		left:       0;
+		top:        $kentbar-height;
+		color:      $kent-primary;
+		box-sizing: border-box;
+
+		.search-services {
+			&::before{
+				content: $kf-search;
+				font-family: $font-family-kentfont;
+				font-size: 20px;
+				position: absolute;
+				left:21px;
+				top:19px;
+				color: #A5A5A5;
+			}
+			input {
+				box-sizing: border-box;
+				width: calc(100% - 20px);
+				padding: 6px 12px 6px 35px;
+				margin:12px;
+				line-height: 1.5;
+				color: #55595c;
+				background-color: #fff;
+				background-image: none;
+				border: 1px solid #ccc;
+				transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+				font: inherit;
+				font-size: 16px;
+				&:focus{
+					border-color: #66afe9;
+					outline: none;
+				}
+
+			}
+		}
+		
+		.footer-section{
+			padding:12px;
+			text-align:center;
+			a {
+				text-decoration:none;
+				color: $link-color;
+			}
+
+		}
+
+		.user-services-section {
+			margin-bottom: 12px;
+			min-height: .9em;
+
+			.dept-a-z {
+				float:right;
+				font-size: 0.9em;
+				margin-top: -4px;
+				text-decoration:none;
+
+				@include chevron-link("inline");
+
+				&:hover {
+					background: none;
+				}
+			}
+		}
+
+		.kentbar-quickspot-results {
+			max-height: calc(100vh - #{($kentbar-height + 57px)});
+			overflow:auto;
+			position: relative;
+		}
+
+		
+
+		.user-services-section a.key-service, .kentbar-quickspot-results a.kentbar-quickspot-result {
+			box-sizing: border-box;
+			display:inline-block;
+			padding:15px 15px 15px 44px;
+			width:100%;
+			background:#f5f5f5;
+			border-bottom: solid 1px #ccc;
+			text-decoration: none;
+			transition: color 300ms, background-color 300ms;
+			cursor:pointer;
+			position:relative;
+
+			@include chevron-link();
+
+			&:first-child{
+				border-top: solid 1px #ccc;
+			}
+			
+			&::before {
+				display:block;
+				position: absolute;
+				left:12px;
+				top:0;
+				font-size: 20px;
+				line-height: 46px;
+				width: 25px;
+				text-align: center;
+			}
+			
+		}
+
+		div.kentbar-quickspot-results a.kentbar-quickspot-result{
+			padding-left:15px;
+			background:#fff;
+
+		}
+		div.kentbar-quickspot-result-subtext{
+			color: $brand-accent;
+			font-style: italic;
+			margin-top: 4px;
+		}
+
+		@include media-breakpoint-up(md) {
+
+			.user-services-section {
+				padding: 0 12px 12px;
+				margin-bottom:0;
+				border-bottom: solid 1px #d0d0d0;
+
+				a.key-service {
+					width:50%;
+					border-bottom:none;
+					background: #fff;
+					&::after{
+						display: none;
+					}
+					&:first-child{
+						border-top: none;
+					}
+				}
+			}
+
+			.kentbar-quickspot-results {
+				max-height:251px;
+
+			}
+
+			height:     auto;
+			position:   absolute;
+			top:        $kentbar-height-desktop+10px;
+			right:      10px;
+			left:       auto;
+			width:      600px;
+			max-width:  50%;
+
+			border:     1px solid #ccc;
+
+			box-shadow: 1px 1px 3px #BFBFBF;
+		}
+	}
+}
+
+body.show-kentbar-menu{
+	overflow-y: hidden;
+	@include media-breakpoint-up(md){
+		overflow-y: auto;
+	}
+}

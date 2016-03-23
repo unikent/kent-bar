@@ -19,7 +19,7 @@ module.exports = {
 			}
 		},
 		files: {
-			"build/dev/app.js": ["src/js/app.js"]
+			"build/dev/assets/app.js": ["src/js/app.js"]
 		}
 	},
 	test: {
@@ -40,7 +40,7 @@ module.exports = {
 			}
 		},
 		files: {
-			"build/test/app.js": ["test/**/*.js", "src/js/app.js"]
+			"build/test/assets/app.js": ["test/**/*.js", "src/js/app.js"]
 		}
 	},
 	deploy: {
@@ -58,7 +58,7 @@ module.exports = {
 			]
 		},
 		files: {
-			"build/deploy/app.js": ["src/js/app.js"]
+			"build/deploy/assets/app.js": ["src/js/app.js"]
 		}
 	}
 };

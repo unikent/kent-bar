@@ -1,0 +1,266 @@
+@charset "UTF-8";
+#kent-bar, .kent-bar {
+  font-size: 16px;
+  line-height: 19px;
+  background: #05345C;
+  color: #fff;
+  font-family: "ArialLight", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  #kent-bar a.navbar-brand, .kent-bar a.navbar-brand {
+    font-size: 1.2rem;
+    padding: 12px 1em;
+    color: #fff;
+    display: inline-block;
+    text-decoration: none; }
+    #kent-bar a.navbar-brand span.sr-only, .kent-bar a.navbar-brand span.sr-only {
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px; }
+  #kent-bar button.audience-menu, .kent-bar button.audience-menu {
+    background-color: #063c6b;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    float: right;
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+    box-sizing: border-box; }
+    #kent-bar button.audience-menu:active, #kent-bar button.audience-menu:focus, .kent-bar button.audience-menu:active, .kent-bar button.audience-menu:focus {
+      outline: none; }
+  #kent-bar nav.audience-nav-links, .kent-bar nav.audience-nav-links {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: height 200ms;
+    clear: both; }
+    #kent-bar nav.audience-nav-links a, .kent-bar nav.audience-nav-links a {
+      cursor: pointer;
+      color: #005689;
+      padding: 0.75em 1em;
+      background: #f5f5f5;
+      border-bottom: 1px solid #ccc;
+      display: block;
+      text-decoration: none;
+      position: relative; }
+      #kent-bar nav.audience-nav-links a::after, .kent-bar nav.audience-nav-links a::after {
+        display: inline-block;
+        box-sizing: border-box;
+        padding-left: 8px;
+        content: "";
+        font-family: "kentfont", sans-serif;
+        width: 20px;
+        text-align: left;
+        transition: all 300ms;
+        position: absolute;
+        right: 16px; }
+      #kent-bar nav.audience-nav-links a:hover, .kent-bar nav.audience-nav-links a:hover {
+        color: #00263d; }
+        #kent-bar nav.audience-nav-links a:hover::after, .kent-bar nav.audience-nav-links a:hover::after {
+          padding-left: 11px; }
+  #kent-bar.in nav.audience-nav-links, .kent-bar.in nav.audience-nav-links {
+    height: 175px;
+    box-shadow: 1px 1px 3px #BFBFBF;
+    border-bottom: 1px solid #ccc; }
+  #kent-bar.in button.audience-menu::before, .kent-bar.in button.audience-menu::before {
+    content: ""; }
+  @media (min-width: 768px) {
+    #kent-bar button.audience-menu, .kent-bar button.audience-menu {
+      display: none; }
+    #kent-bar.in nav.audience-nav-links, .kent-bar.in nav.audience-nav-links {
+      height: auto;
+      box-shadow: none;
+      border-bottom: none; }
+    #kent-bar nav.audience-nav-links, .kent-bar nav.audience-nav-links {
+      width: auto;
+      box-shadow: none;
+      border-bottom: none;
+      height: auto;
+      font-size: 0.9rem;
+      float: right;
+      margin-right: 20px;
+      overflow: visible; }
+      #kent-bar nav.audience-nav-links a, .kent-bar nav.audience-nav-links a {
+        display: inline-block;
+        background: none;
+        padding: 0;
+        line-height: 45px;
+        color: #fff;
+        margin-left: .5em;
+        border-bottom: 0px;
+        position: relative; }
+        #kent-bar nav.audience-nav-links a:hover, .kent-bar nav.audience-nav-links a:hover {
+          color: #FFF; }
+        #kent-bar nav.audience-nav-links a::after, .kent-bar nav.audience-nav-links a::after {
+          display: none;
+          content: none; }
+        #kent-bar nav.audience-nav-links a.in::after, .kent-bar nav.audience-nav-links a.in::after {
+          box-sizing: border-box;
+          padding: 0;
+          content: " ";
+          display: block;
+          height: 14px;
+          width: 14px;
+          background: #fff;
+          position: absolute;
+          bottom: -18px;
+          right: calc(50% - 7px);
+          transform: rotate(45deg);
+          z-index: 100;
+          border-top: 1px solid #ccc;
+          border-left: 1px solid #ccc; } }
+
+#kent-bar #kent-bar-menu, .kent-bar #kent-bar-menu {
+  position: fixed;
+  z-index: 99;
+  width: 100vw;
+  height: calc(100vh - 45px);
+  background: #fff;
+  left: 0;
+  top: 45px;
+  color: #05345C;
+  box-sizing: border-box; }
+  #kent-bar #kent-bar-menu .search-services::before, .kent-bar #kent-bar-menu .search-services::before {
+    content: "";
+    font-family: "kentfont", sans-serif;
+    font-size: 20px;
+    position: absolute;
+    left: 21px;
+    top: 19px;
+    color: #A5A5A5; }
+  #kent-bar #kent-bar-menu .search-services input, .kent-bar #kent-bar-menu .search-services input {
+    box-sizing: border-box;
+    width: calc(100% - 20px);
+    padding: 6px 12px 6px 35px;
+    margin: 12px;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    font: inherit;
+    font-size: 16px; }
+    #kent-bar #kent-bar-menu .search-services input:focus, .kent-bar #kent-bar-menu .search-services input:focus {
+      border-color: #66afe9;
+      outline: none; }
+  #kent-bar #kent-bar-menu .footer-section, .kent-bar #kent-bar-menu .footer-section {
+    padding: 12px;
+    text-align: center; }
+    #kent-bar #kent-bar-menu .footer-section a, .kent-bar #kent-bar-menu .footer-section a {
+      text-decoration: none;
+      color: #005689; }
+  #kent-bar #kent-bar-menu .user-services-section, .kent-bar #kent-bar-menu .user-services-section {
+    margin-bottom: 12px;
+    min-height: .9em; }
+    #kent-bar #kent-bar-menu .user-services-section .dept-a-z, .kent-bar #kent-bar-menu .user-services-section .dept-a-z {
+      float: right;
+      font-size: 0.9em;
+      margin-top: -4px;
+      text-decoration: none;
+      color: #005689;
+      position: relative; }
+      #kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover, #kent-bar #kent-bar-menu .user-services-section .dept-a-z.selected, .kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover, .kent-bar #kent-bar-menu .user-services-section .dept-a-z.selected {
+        color: #00263d;
+        background: #f5f5f5; }
+        #kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover::after, #kent-bar #kent-bar-menu .user-services-section .dept-a-z.selected::after, .kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover::after, .kent-bar #kent-bar-menu .user-services-section .dept-a-z.selected::after {
+          padding-left: 11px; }
+      #kent-bar #kent-bar-menu .user-services-section .dept-a-z::after, .kent-bar #kent-bar-menu .user-services-section .dept-a-z::after {
+        display: inline-block;
+        box-sizing: border-box;
+        padding-left: 8px;
+        content: "";
+        font-family: "kentfont", sans-serif;
+        width: 20px;
+        text-align: left;
+        transition: all 300ms;
+        display: inline-block; }
+      #kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover, .kent-bar #kent-bar-menu .user-services-section .dept-a-z:hover {
+        background: none; }
+  #kent-bar #kent-bar-menu .kentbar-quickspot-results, .kent-bar #kent-bar-menu .kentbar-quickspot-results {
+    max-height: calc(100vh - 102px);
+    overflow: auto;
+    position: relative; }
+  #kent-bar #kent-bar-menu .user-services-section a.key-service, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result, .kent-bar #kent-bar-menu .user-services-section a.key-service, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 15px 15px 15px 44px;
+    width: 100%;
+    background: #f5f5f5;
+    border-bottom: solid 1px #ccc;
+    text-decoration: none;
+    transition: color 300ms, background-color 300ms;
+    cursor: pointer;
+    position: relative;
+    color: #005689;
+    position: relative; }
+    #kent-bar #kent-bar-menu .user-services-section a.key-service:hover, #kent-bar #kent-bar-menu .user-services-section a.key-service.selected, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:hover, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result.selected, .kent-bar #kent-bar-menu .user-services-section a.key-service:hover, .kent-bar #kent-bar-menu .user-services-section a.key-service.selected, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:hover, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result.selected {
+      color: #00263d;
+      background: #f5f5f5; }
+      #kent-bar #kent-bar-menu .user-services-section a.key-service:hover::after, #kent-bar #kent-bar-menu .user-services-section a.key-service.selected::after, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:hover::after, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result.selected::after, .kent-bar #kent-bar-menu .user-services-section a.key-service:hover::after, .kent-bar #kent-bar-menu .user-services-section a.key-service.selected::after, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:hover::after, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result.selected::after {
+        padding-left: 11px; }
+    #kent-bar #kent-bar-menu .user-services-section a.key-service::after, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::after, .kent-bar #kent-bar-menu .user-services-section a.key-service::after, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::after {
+      display: inline-block;
+      box-sizing: border-box;
+      padding-left: 8px;
+      content: "";
+      font-family: "kentfont", sans-serif;
+      width: 20px;
+      text-align: left;
+      transition: all 300ms;
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      top: calc(50% - 10px); }
+    #kent-bar #kent-bar-menu .user-services-section a.key-service:first-child, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:first-child, .kent-bar #kent-bar-menu .user-services-section a.key-service:first-child, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result:first-child {
+      border-top: solid 1px #ccc; }
+    #kent-bar #kent-bar-menu .user-services-section a.key-service::before, #kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::before, .kent-bar #kent-bar-menu .user-services-section a.key-service::before, .kent-bar #kent-bar-menu .kentbar-quickspot-results a.kentbar-quickspot-result::before {
+      display: block;
+      position: absolute;
+      left: 12px;
+      top: 0;
+      font-size: 20px;
+      line-height: 46px;
+      width: 25px;
+      text-align: center; }
+  #kent-bar #kent-bar-menu div.kentbar-quickspot-results a.kentbar-quickspot-result, .kent-bar #kent-bar-menu div.kentbar-quickspot-results a.kentbar-quickspot-result {
+    padding-left: 15px;
+    background: #fff; }
+  #kent-bar #kent-bar-menu div.kentbar-quickspot-result-subtext, .kent-bar #kent-bar-menu div.kentbar-quickspot-result-subtext {
+    color: #937227;
+    font-style: italic;
+    margin-top: 4px; }
+  @media (min-width: 768px) {
+    #kent-bar #kent-bar-menu, .kent-bar #kent-bar-menu {
+      height: auto;
+      position: absolute;
+      top: 55px;
+      right: 10px;
+      left: auto;
+      width: 600px;
+      max-width: 50%;
+      border: 1px solid #ccc;
+      box-shadow: 1px 1px 3px #BFBFBF; }
+      #kent-bar #kent-bar-menu .user-services-section, .kent-bar #kent-bar-menu .user-services-section {
+        padding: 0 12px 12px;
+        margin-bottom: 0;
+        border-bottom: solid 1px #d0d0d0; }
+        #kent-bar #kent-bar-menu .user-services-section a.key-service, .kent-bar #kent-bar-menu .user-services-section a.key-service {
+          width: 50%;
+          border-bottom: none;
+          background: #fff; }
+          #kent-bar #kent-bar-menu .user-services-section a.key-service::after, .kent-bar #kent-bar-menu .user-services-section a.key-service::after {
+            display: none; }
+          #kent-bar #kent-bar-menu .user-services-section a.key-service:first-child, .kent-bar #kent-bar-menu .user-services-section a.key-service:first-child {
+            border-top: none; }
+      #kent-bar #kent-bar-menu .kentbar-quickspot-results, .kent-bar #kent-bar-menu .kentbar-quickspot-results {
+        max-height: 251px; } }
+
+body.show-kentbar-menu {
+  overflow-y: hidden; }
+  @media (min-width: 768px) {
+    body.show-kentbar-menu {
+      overflow-y: auto; } }

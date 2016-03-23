@@ -20,6 +20,7 @@
     "backbone.nativeview": "^0.3.3",
     "bootstrap": "4.0.0-alpha.2",
     "chai": "^2.0.0",
+    "es6-promise": "^3.1.2",
     "exoskeleton": "^0.7.0",
     "grunt": "~0.4.5",
     "grunt-browserify": "~3.2.0",
@@ -36,6 +37,8 @@
     "phantomjs-prebuilt": "^2.1.4",
     "sinon": "^1.17.3",
     "testem": "~0.6.22",
-    "time-grunt": "~1.0.0"
+    "time-grunt": "~1.0.0",
+    "quick-spot": "~0.8.2",
+    "kent-font":"https://github.com/unikent/kent-font/archive/master.tar.gz"
   }
 }

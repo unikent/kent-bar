@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 	grunt.registerTask("compile-dev",  ["clean:dev", "copy:dev", "browserify:dev", "sass:dev"]);
 	grunt.registerTask("compile-deploy",  ["clean:deploy", "copy:deploy", "browserify:deploy", "sass:deploy", "uglify"]);
 	grunt.registerTask("compile", ["compile-dev", "compile-deploy"]);
-	grunt.registerTask("server", ["compile-dev", "connect:all", "watch"]);
+	grunt.registerTask("server", ["compile-dev", "connect:all", "watch:main"]);
 	grunt.registerTask("default", ["compile"]);
 
 };

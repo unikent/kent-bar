@@ -46,7 +46,7 @@ module.exports = {
 				expand: true,
 				cwd: "src/public/",
 				src: ["**"],
-				dest: "build/test/"
+				dest: "build/test/assets/"
 			}
 		],
 		options: {
@@ -67,7 +67,7 @@ module.exports = {
 				expand: true,
 				cwd: "src/public/",
 				src: ["**"],
-				dest: "build/dev/"
+				dest: "build/dev/assets/"
 			}
 		],
 		options: {
@@ -88,7 +88,7 @@ module.exports = {
 				expand: true,
 				cwd: "src/public/",
 				src: ["**"],
-				dest: "build/deploy/"
+				dest: "build/deploy/assets/"
 			}
 		],
 		options: {

@@ -8,7 +8,7 @@
 				top: 55px;
 			}
 		</style>
-        <link rel="stylesheet" href="../build/test/main.css">
+        <link rel="stylesheet" href="../build/test/assets/main.css">
         <title>Unit Testing</title>
     </head>
     <body>
@@ -22,7 +22,19 @@
     <script src="../node_modules/chai/chai.js"></script>
     <script type="text/javascript">mocha.setup('bdd');</script>
 	##local_settings##
-    <script type="text/javascript" src="../build/test/app.js"></script>
+	<script>
+		window.KENT  = window.KENT || {};
+		window.KENT.kentbar  = window.KENT.kentbar || {};
+
+		window.KENT.kentbar.config = {
+			styles:{
+				kentfont:true,
+				fonts:true,
+				base:false
+			}
+		};
+	</script>
+    <script type="text/javascript" src="../build/test/assets/app.js"></script>
 	<script type="text/javascript" src="/testem.js"></script>
     <script type="text/javascript">
         mocha.run();
