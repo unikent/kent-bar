@@ -9,7 +9,7 @@ Description of other PRs/repos that are dependent on what has changed e.g. api.k
 
 #### Deploy checklist
 ##### Before deploy:
-- [ ] develop on the test server
+- [ ] develop branch deployed to the test server
 - [ ] any dependencies (other repos) on the test server
 - [ ] all changes tested on test server
 - [ ] necessary comms sent out to affected users
@@ -17,14 +17,14 @@ Description of other PRs/repos that are dependent on what has changed e.g. api.k
 - [ ] config changes have been put onto live server (.env/config.php etc)
 
 ##### After deploy:
-- [ ] All dependencies rolled out to live
-- [ ] Migrations run on live server
-- [ ] Seeds run on live server
-- [ ] Changes tested on live
-- [ ] System booking closed
-- [ ] Relevant FootPrints tickets responded to
-- [ ] Relevant Trello cards moved to done
-- [ ] Product owner/stakeholders updated (if no Trello/FP ticket)
+- [ ] all dependencies rolled out to live
+- [ ] migrations run on live server
+- [ ] seeds run on live server
+- [ ] changes tested on live
+- [ ] system booking closed
+- [ ] relevant FootPrints tickets responded to
+- [ ] relevant Trello cards moved to done
+- [ ] product owner/stakeholders updated (if no Trello/FP ticket)
 
 ### PR: Feature branch -> develop
 Brief summary of what changes have been made
