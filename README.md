@@ -98,3 +98,5 @@ The departments link on the audience bar provides a search so that users can eas
 
 ### Caching
 The Kent Bar will cache the api results it receives in browser localstorage for 24 hours. Api requests will still be cached via nginx and api.kent as normal.  
+
+add some text to test the gh template
