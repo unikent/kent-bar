@@ -1,6 +1,6 @@
 {
   "name": "kent-bar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "University of Kent audience navigation bar.",
   "main": "index.js",
   "repository": {
@@ -13,7 +13,8 @@
   "author": "WebDev <is-webdev@kent.ac.uk>",
   "license": "MIT",
   "private": true,
-  "dependencies": {
+  "dependencies": { },
+  "devDependencies": {
     "aliasify": "^1.9.0",
     "backbone": "^1.2.3",
     "backbone.nativeajax": "^0.4.3",
@@ -38,7 +39,7 @@
     "sinon": "^1.17.3",
     "testem": "~0.6.22",
     "time-grunt": "~1.0.0",
-    "quick-spot": "~0.8.2",
-    "kent-font":"https://github.com/unikent/kent-font/archive/master.tar.gz"
+    "quick-spot": "~0.8.5",
+    "kent-font":"git+ssh://git@github.com/unikent/kent-font.git"
   }
 }
