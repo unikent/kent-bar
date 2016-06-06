@@ -3,9 +3,10 @@ The new Kent bar will be a replacement for the [current Kent nav bar](https://gi
 
 It is a [Exoskeleton.js app](http://exosjs.com/) app which is a derivative of *[Backbone](http://backbonejs.org/)*, built **without** *[jQuery](https://jquery.com/)* or *[Underscore](http://underscorejs.org/)*.
 
+## Usage
+This product is publicly available under the terms of the MIT license included in this repository. Please refer to the current [brand guidelines](https://www.kent.ac.uk/brand) for use of the existing brand.
 
 ## Using the Bar
-
 To add the Kent Bar to you webpage simply include the `build/deploy/assets/app.js` script. This should be loaded asynchronously before you `</body` tag.
 ```
 <script src="URL_PATH_TO/build/deploy/assets/app.js" async></script>
