@@ -31,7 +31,6 @@ module.exports = BaseView.extend({
 		){
 			this.components.push(window.KENT.kentbar.config.custom_link);
 		}
-
 	},
 
 	menuClick: function(e){
@@ -109,6 +108,8 @@ module.exports = BaseView.extend({
 	render: function () {
 		"use strict";
 		this.renderContent(template({components: this.components}));
+
+		helper.addClass(this.el.querySelector(".audience-nav-links"), "kent-bar-" + this.components.length + "-links");
 	},
 	_clearLinkOpenStates: function(exclude){
 		// Get open links in menu & close them all

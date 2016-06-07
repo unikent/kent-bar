@@ -156,7 +156,8 @@
       color: #005689; }
   #kent-bar #kent-bar-menu .user-services-section, .kent-bar #kent-bar-menu .user-services-section {
     margin-bottom: 12px;
-    min-height: .9em; }
+    min-height: .9em;
+    box-sizing: content-box; }
     #kent-bar #kent-bar-menu .user-services-section .dept-a-z, .kent-bar #kent-bar-menu .user-services-section .dept-a-z {
       float: right;
       font-size: 0.9em;
