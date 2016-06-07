@@ -37,7 +37,6 @@
 		&:active,&:focus{
 			outline: none;
 		}
-
 	}
 
 	nav.audience-nav-links {
@@ -80,7 +79,14 @@
 
 	&.in {
 		nav.audience-nav-links {
-			height: 175px;
+
+			&.kent-bar-1-links {height: 44px;}
+			&.kent-bar-2-links {height: 88px;}
+			&.kent-bar-3-links {height: 132px;}
+			&.kent-bar-4-links {height: 176px;}
+			&.kent-bar-5-links {height: 220px;}
+			&.kent-bar-6-links {height: 264px;}	
+
 			box-shadow: 1px 1px 3px #BFBFBF;
 			border-bottom: 1px solid #ccc;
 		}
@@ -110,6 +116,12 @@
 			float:right;
 			margin-right: 20px;
 			overflow:visible;
+
+			// Safari work around (possibly remove if we find a nicer solution to the bug)
+			position: absolute;
+			top:0;
+			right:0;
+			// end safari work around
 
 			a {	
 				display:       inline-block;
