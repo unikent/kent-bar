@@ -19,7 +19,7 @@ describe("apiBase", function () {
 			window.KENT.settings = window.KENT.settings || {};
 			window.KENT.settings.api_url = false;
 			var apiBase = api.get();
-			expect(apiBase).to.equal("https://api.kent.ac.uk/api/");
+			expect(apiBase).to.equal("https://api.kent.ac.uk/api");
 		});
 
 	});
