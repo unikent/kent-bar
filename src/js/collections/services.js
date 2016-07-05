@@ -15,7 +15,7 @@ module.exports = baseCollection.extend({
 	loaded: false,
 
 	url: function () {
-		return this.api.get() + "v1/services";
+		return this.api.get() + "/v1/services";
 	},
 
 	key_services: false,

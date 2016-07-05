@@ -62,9 +62,20 @@
         #kent-bar nav.audience-nav-links a:hover::after, .kent-bar nav.audience-nav-links a:hover::after {
           padding-left: 11px; }
   #kent-bar.in nav.audience-nav-links, .kent-bar.in nav.audience-nav-links {
-    height: 175px;
     box-shadow: 1px 1px 3px #BFBFBF;
     border-bottom: 1px solid #ccc; }
+    #kent-bar.in nav.audience-nav-links.kent-bar-1-links, .kent-bar.in nav.audience-nav-links.kent-bar-1-links {
+      height: 44px; }
+    #kent-bar.in nav.audience-nav-links.kent-bar-2-links, .kent-bar.in nav.audience-nav-links.kent-bar-2-links {
+      height: 88px; }
+    #kent-bar.in nav.audience-nav-links.kent-bar-3-links, .kent-bar.in nav.audience-nav-links.kent-bar-3-links {
+      height: 132px; }
+    #kent-bar.in nav.audience-nav-links.kent-bar-4-links, .kent-bar.in nav.audience-nav-links.kent-bar-4-links {
+      height: 176px; }
+    #kent-bar.in nav.audience-nav-links.kent-bar-5-links, .kent-bar.in nav.audience-nav-links.kent-bar-5-links {
+      height: 220px; }
+    #kent-bar.in nav.audience-nav-links.kent-bar-6-links, .kent-bar.in nav.audience-nav-links.kent-bar-6-links {
+      height: 264px; }
   #kent-bar.in button.audience-menu::before, .kent-bar.in button.audience-menu::before {
     content: ""; }
   @media (min-width: 768px) {
@@ -82,7 +93,10 @@
       font-size: 0.9rem;
       float: right;
       margin-right: 20px;
-      overflow: visible; }
+      overflow: visible;
+      position: absolute;
+      top: 0;
+      right: 0; }
       #kent-bar nav.audience-nav-links a, .kent-bar nav.audience-nav-links a {
         display: inline-block;
         background: none;
