@@ -114,16 +114,16 @@ module.exports = BaseView.extend({
 	_clearLinkOpenStates: function(exclude){
 		// Get open links in menu & close them all
 		var openNodes = this.el.querySelectorAll("nav a.in");
-		for (var c in openNodes){
-			if (openNodes.hasOwnProperty(c)){
+		for (i = 0; i < openNodes.length; ++i) {
+			if (openNodes.hasOwnProperty(i)){
 				// if node is the "exclude", don't close it - this is probably the one just activated
-				if (openNodes[c].getAttribute("data-action") === exclude){
+				if (openNodes[i].getAttribute("data-action") === exclude){
 					continue;
 				}
 
 				// close nodes
-				helper.removeClass(openNodes[c], "in");
-				openNodes[c].setAttribute("aria-expanded", "false");
+				helper.removeClass(openNodes[i], "in");
+				openNodes[i].setAttribute("aria-expanded", "false");
 			}
 		}
 	}
