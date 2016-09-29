@@ -191,8 +191,10 @@
 }
 
 body.show-kentbar-menu{
+    height: 100%;
 	overflow-y: hidden;
 	@include media-breakpoint-up(md){
+        height: 100%;
 		overflow-y: auto;
 	}
 }

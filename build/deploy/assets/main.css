@@ -4,7 +4,8 @@
   line-height: 19px;
   background: #05345C;
   color: #fff;
-  font-family: "ArialLight", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  font-family: "ArialLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 3rem; }
   #kent-bar a.navbar-brand, .kent-bar a.navbar-brand {
     font-size: 1.2rem;
     padding: 12px 1em;
@@ -79,53 +80,55 @@
   #kent-bar.in button.audience-menu::before, .kent-bar.in button.audience-menu::before {
     content: ""; }
   @media (min-width: 768px) {
-    #kent-bar button.audience-menu, .kent-bar button.audience-menu {
-      display: none; }
-    #kent-bar.in nav.audience-nav-links, .kent-bar.in nav.audience-nav-links {
-      height: auto;
-      box-shadow: none;
-      border-bottom: none; }
-    #kent-bar nav.audience-nav-links, .kent-bar nav.audience-nav-links {
-      width: auto;
-      box-shadow: none;
-      border-bottom: none;
-      height: auto;
-      font-size: 0.9rem;
-      float: right;
-      margin-right: 20px;
-      overflow: visible;
-      position: absolute;
-      top: 0;
-      right: 0; }
-      #kent-bar nav.audience-nav-links a, .kent-bar nav.audience-nav-links a {
-        display: inline-block;
-        background: none;
-        padding: 0;
-        line-height: 45px;
-        color: #fff;
-        margin-left: .5em;
-        border-bottom: 0px;
-        position: relative; }
-        #kent-bar nav.audience-nav-links a:hover, .kent-bar nav.audience-nav-links a:hover {
-          color: #FFF; }
-        #kent-bar nav.audience-nav-links a::after, .kent-bar nav.audience-nav-links a::after {
-          display: none;
-          content: none; }
-        #kent-bar nav.audience-nav-links a.in::after, .kent-bar nav.audience-nav-links a.in::after {
-          box-sizing: border-box;
+    #kent-bar, .kent-bar {
+      height: auto; }
+      #kent-bar button.audience-menu, .kent-bar button.audience-menu {
+        display: none; }
+      #kent-bar.in nav.audience-nav-links, .kent-bar.in nav.audience-nav-links {
+        height: auto;
+        box-shadow: none;
+        border-bottom: none; }
+      #kent-bar nav.audience-nav-links, .kent-bar nav.audience-nav-links {
+        width: auto;
+        box-shadow: none;
+        border-bottom: none;
+        height: auto;
+        font-size: 0.9rem;
+        float: right;
+        margin-right: 20px;
+        overflow: visible;
+        position: absolute;
+        top: 0;
+        right: 0; }
+        #kent-bar nav.audience-nav-links a, .kent-bar nav.audience-nav-links a {
+          display: inline-block;
+          background: none;
           padding: 0;
-          content: " ";
-          display: block;
-          height: 14px;
-          width: 14px;
-          background: #fff;
-          position: absolute;
-          bottom: -18px;
-          right: calc(50% - 7px);
-          transform: rotate(45deg);
-          z-index: 100;
-          border-top: 1px solid #ccc;
-          border-left: 1px solid #ccc; } }
+          line-height: 45px;
+          color: #fff;
+          margin-left: .5em;
+          border-bottom: 0px;
+          position: relative; }
+          #kent-bar nav.audience-nav-links a:hover, .kent-bar nav.audience-nav-links a:hover {
+            color: #FFF; }
+          #kent-bar nav.audience-nav-links a::after, .kent-bar nav.audience-nav-links a::after {
+            display: none;
+            content: none; }
+          #kent-bar nav.audience-nav-links a.in::after, .kent-bar nav.audience-nav-links a.in::after {
+            box-sizing: border-box;
+            padding: 0;
+            content: " ";
+            display: block;
+            height: 14px;
+            width: 14px;
+            background: #fff;
+            position: absolute;
+            bottom: -18px;
+            right: calc(50% - 7px);
+            transform: rotate(45deg);
+            z-index: 100;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc; } }
 
 #kent-bar #kent-bar-menu, .kent-bar #kent-bar-menu {
   position: fixed;
@@ -276,7 +279,9 @@
         max-height: 251px; } }
 
 body.show-kentbar-menu {
+  height: 100%;
   overflow-y: hidden; }
   @media (min-width: 768px) {
     body.show-kentbar-menu {
+      height: 100%;
       overflow-y: auto; } }
