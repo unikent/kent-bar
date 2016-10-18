@@ -1,6 +1,6 @@
 {
   "name": "kent-bar",
-  "version": "1.0.3",
+  "version": "1.0.9",
   "description": "University of Kent audience navigation bar.",
   "main": "index.js",
   "repository": {
@@ -39,7 +39,7 @@
     "sinon": "^1.17.3",
     "testem": "~0.6.22",
     "time-grunt": "~1.0.0",
-    "quick-spot": "~0.8.5",
+    "quick-spot": "~0.9.5",
     "kent-font":"https://github.com/unikent/kent-font.git"
   }
 }

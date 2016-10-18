@@ -101,6 +101,7 @@ module.exports = BaseView.extend({
 		this.el.style.display = "block";
 		this.isOpen = true;
 		helper.addClass(document.body, "show-kentbar-menu");
+		helper.addClass(document.getElementsByTagName( 'html' )[0],'show-kentbar-menu');
 		this.trigger("menu:open");
 	},
 	hide: function(){
@@ -108,6 +109,7 @@ module.exports = BaseView.extend({
 		this.el.style.display = "none";
 		this.isOpen = false;
 		helper.removeClass(document.body, "show-kentbar-menu");
+		helper.removeClass(document.getElementsByTagName( 'html' )[0],'show-kentbar-menu');
 		this.trigger("menu:close");
 	},
 	showAllToggle: function(e, reset){
