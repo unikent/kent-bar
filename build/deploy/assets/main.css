@@ -141,30 +141,47 @@
   color: #05345C;
   box-sizing: border-box;
   font-size: 16px; }
-  #kent-bar #kent-bar-menu .search-services::before, .kent-bar #kent-bar-menu .search-services::before {
-    content: "";
-    font-family: "kentfont", sans-serif;
-    font-size: 20px;
-    position: absolute;
-    left: 21px;
-    top: 19px;
-    color: #A5A5A5; }
-  #kent-bar #kent-bar-menu .search-services input, .kent-bar #kent-bar-menu .search-services input {
-    box-sizing: border-box;
-    width: calc(100% - 20px);
-    padding: 6px 12px 6px 35px;
-    margin: 12px;
-    line-height: 1.5;
-    color: #55595c;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    font: inherit;
-    font-size: 16px; }
-    #kent-bar #kent-bar-menu .search-services input:focus, .kent-bar #kent-bar-menu .search-services input:focus {
-      border-color: #66afe9;
-      outline: none; }
+  #kent-bar #kent-bar-menu .back, .kent-bar #kent-bar-menu .back {
+    text-align: center;
+    padding: 0.75rem 1rem 0;
+    font-weight: bold;
+    position: relative; }
+    #kent-bar #kent-bar-menu .back:before, .kent-bar #kent-bar-menu .back:before {
+      position: absolute;
+      left: 1rem;
+      content: "";
+      font-family: "kentfont", sans-serif;
+      padding-right: 0.5rem;
+      display: inline-block; }
+    @media (min-width: 768px) {
+      #kent-bar #kent-bar-menu .back, .kent-bar #kent-bar-menu .back {
+        display: none; } }
+  #kent-bar #kent-bar-menu .search-services, .kent-bar #kent-bar-menu .search-services {
+    position: relative; }
+    #kent-bar #kent-bar-menu .search-services::before, .kent-bar #kent-bar-menu .search-services::before {
+      content: "";
+      font-family: "kentfont", sans-serif;
+      font-size: 20px;
+      position: absolute;
+      left: 21px;
+      top: 19px;
+      color: #A5A5A5; }
+    #kent-bar #kent-bar-menu .search-services input, .kent-bar #kent-bar-menu .search-services input {
+      box-sizing: border-box;
+      width: calc(100% - 20px);
+      padding: 6px 12px 6px 35px;
+      margin: 12px;
+      line-height: 1.5;
+      color: #55595c;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+      transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      font: inherit;
+      font-size: 16px; }
+      #kent-bar #kent-bar-menu .search-services input:focus, .kent-bar #kent-bar-menu .search-services input:focus {
+        border-color: #66afe9;
+        outline: none; }
   #kent-bar #kent-bar-menu .footer-section, .kent-bar #kent-bar-menu .footer-section {
     padding: 12px;
     text-align: center; }

@@ -45,7 +45,25 @@
 		box-sizing: border-box;
 		font-size:16px;
 
+        .back{
+            text-align: center;
+            padding: 0.75rem 1rem 0;
+            font-weight: bold;
+            position: relative;
+            &:before{
+                position: absolute;
+                left: 1rem;
+                content: $kf-chevron-left;
+                font-family:  $font-family-kentfont;
+                padding-right: 0.5rem;
+                display: inline-block;
+            }
+            @include media-breakpoint-up(md) {
+                display: none;
+            }
+        }
 		.search-services {
+            position: relative;
 			&::before{
 				content: $kf-search;
 				font-family: $font-family-kentfont;

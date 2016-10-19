@@ -25,6 +25,7 @@ module.exports = BaseView.extend({
 
 		// containers for sections
 		this.sections = {
+			"back" : this.el.querySelector(".back"),
 			"user": this.el.querySelector(".user-section"),
 			"keyServices": this.el.querySelector(".user-services-section"),
 			"searchServices": this.el.querySelector(".search-services"),
@@ -83,13 +84,13 @@ module.exports = BaseView.extend({
 
 		return quickspotInstance;
 	},
-	open: function(menu){
+	open: function(menu, title){
 		// handle request to open a given menu
 		if (this.currentMenu === menu && this.isOpen){
 			this.hide();
 		} else {
 			if (this.currentMenu !== menu){
-				this.render(menu);
+				this.render(menu,title);
 				this.currentMenu = menu;
 				this.trigger("menu:change", menu);
 			}
@@ -103,6 +104,11 @@ module.exports = BaseView.extend({
 		helper.addClass(document.body, "show-kentbar-menu");
 		helper.addClass(document.getElementsByTagName( 'html' )[0],'show-kentbar-menu');
 		this.trigger("menu:open");
+	},
+	back: function(){
+		console.log('arg');
+		this.el.style.display = "none";
+		this.isOpen = false;
 	},
 	hide: function(){
 		// hide the menu
@@ -137,7 +143,10 @@ module.exports = BaseView.extend({
 			this.qs.instance.showAll();
 		}
 	},
-	render: function (menu) {
+	render: function (menu, title) {
+
+		this.sections.back.innerHTML = title;
+
 		if (menu === "departments"){
 			this.renderDepartments(menu);
 		} else {

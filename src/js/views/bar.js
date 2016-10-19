@@ -7,7 +7,11 @@ module.exports = BaseView.extend({
 
 	events: {
 		"click button.audience-menu": "mobileMenuToggle",
-		"click nav.audience-nav-links a": "menuClick"
+		"click nav.audience-nav-links a": "menuClick",
+		"click .back" : function(){
+			this.menu.back();
+			this.mobileMenuOpen();
+		}
 	},
 	collections: null,
 	navLinksEl: null,
@@ -37,21 +41,22 @@ module.exports = BaseView.extend({
 
 		var target = e.target;
 		var menu_name = e.target.getAttribute("data-action");
+		var menu_title = e.target.innerText;
 		if (menu_name !== null) {
 			e.preventDefault();
-			this.toggleMenu(menu_name, target);
+			this.toggleMenu(menu_name, menu_title, target);
 			e.target.setAttribute("aria-expanded", "true");
 		}
 		return false;
 	},
 
-	toggleMenu: function(menu_name, trigger){
+	toggleMenu: function(menu_name, menu_title, trigger){
 		if (menu_name !== null) {
 
 			// Create menu now that we need it
 			if (!this.menu){
 				// create markup
-				this.menu = new Menu(this.collections);
+				this.menu = new Menu(this.collections, menu_title);
 				this.el.appendChild(this.menu.el);
 
 				var that = this;
@@ -75,7 +80,7 @@ module.exports = BaseView.extend({
 
 			helper.addClass(trigger, "in");
 			// toggle menu itself
-			this.menu.open(menu_name);
+			this.menu.open(menu_name, menu_title);
 		} else {
 			this.menu.hide();
 		}
