@@ -10,32 +10,39 @@ module.exports = Backbone.Collection.extend({
 	did_fetch:false,
 
 	storeResponse: function(resp){
-		if (this.did_fetch && this.cache_key) {
-			localStorage.setItem(this.cache_key, JSON.stringify({timestamp: Date.now(), payload:resp}));
+		if (this.did_fetch && this.cache_key && localStorage) {
+			try {
+				localStorage.setItem(this.cache_key, JSON.stringify({timestamp: Date.now(), payload: resp}));
+			}catch (e){
+				//possibly safari private mode
+			}
 		}
 	},
 
 	fetch: function (options) {
 		var that = this;
 
+		try {
+			if (this.cache_key && localStorage && localStorage.getItem(this.cache_key)) {
 
-		if (this.cache_key && localStorage && localStorage.getItem(this.cache_key)){
+				var resp = JSON.parse(localStorage.getItem(this.cache_key));
 
-			var resp = JSON.parse(localStorage.getItem(this.cache_key));
+				if (resp.timestamp > (Date.now() - 86400000)) {
+					var raw = resp;
+					resp = resp.payload;
 
-			if (resp.timestamp > (Date.now() - 86400000)) {
-				var raw = resp;
-				resp = resp.payload;
-
-				var method = options.reset ? "reset" : "set";
-				options.parse = true;
-				this[method](resp, options);
-				if (options.success){
-					options.success(that, resp, options);
+					var method = options.reset ? "reset" : "set";
+					options.parse = true;
+					this[method](resp, options);
+					if (options.success) {
+						options.success(that, resp, options);
+					}
+					this.trigger("sync", this, resp, options);
+					return raw;
 				}
-				this.trigger("sync", this, resp, options);
-				return raw;
 			}
+		}catch (e){
+			//possibly safari private mode
 		}
 
 		this.did_fetch = true;
