@@ -109,6 +109,7 @@
 			height:auto;
 			box-shadow: none;
 			border-bottom: none;
+            position: relative;
 		}
 
 		nav.audience-nav-links {
@@ -120,7 +121,7 @@
 			float:right;
 			margin-right: 20px;
 			overflow:visible;
-
+            z-index: 100;
 			// Safari work around (possibly remove if we find a nicer solution to the bug)
 			position: absolute;
 			top:0;
@@ -154,7 +155,6 @@
 					bottom: -18px;
 					right: calc(50% - 7px);
 					transform: rotate(45deg);
-					z-index: 100;
 					border-top: 1px solid #ccc;
 					border-left: 1px solid #ccc;
 				}
