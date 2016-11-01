@@ -10,6 +10,7 @@ module.exports = BaseView.extend({
 		"click nav.audience-nav-links a": "menuClick",
 		"click .back" : function(){
 			this.menu.back();
+			this._clearLinkOpenStates();
 			this.mobileMenuOpen();
 		}
 	},

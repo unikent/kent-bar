@@ -106,7 +106,6 @@ module.exports = BaseView.extend({
 		this.trigger("menu:open");
 	},
 	back: function(){
-		console.log('arg');
 		this.el.style.display = "none";
 		this.isOpen = false;
 	},
