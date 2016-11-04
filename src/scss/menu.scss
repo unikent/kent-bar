@@ -35,7 +35,7 @@
 #kent-bar, .kent-bar {
 	#kent-bar-menu {
 		position:   fixed;
-		z-index:    99;
+		z-index:    100;
 		width:      100vw;
 		height:     calc(100vh - #{$kentbar-height});
 		background: #fff;
@@ -50,6 +50,7 @@
             padding: 0.75rem 1rem 0;
             font-weight: bold;
             position: relative;
+            cursor: pointer;
             &:before{
                 position: absolute;
                 left: 1rem;
@@ -173,6 +174,7 @@
 
 		@include media-breakpoint-up(md) {
 
+            z-index: 99;
 			height:     auto;
 			position:   absolute;
 			top:        $kentbar-height-desktop+10px;
