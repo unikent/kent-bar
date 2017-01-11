@@ -82,12 +82,15 @@
   @media (min-width: 768px) {
     #kent-bar, .kent-bar {
       height: auto; }
+      #kent-bar.in nav.audience-nav-links.kent-bar-1-links, #kent-bar.in nav.audience-nav-links.kent-bar-2-links, #kent-bar.in nav.audience-nav-links.kent-bar-3-links, #kent-bar.in nav.audience-nav-links.kent-bar-4-links, #kent-bar.in nav.audience-nav-links.kent-bar-5-links, #kent-bar.in nav.audience-nav-links.kent-bar-6-links, .kent-bar.in nav.audience-nav-links.kent-bar-1-links, .kent-bar.in nav.audience-nav-links.kent-bar-2-links, .kent-bar.in nav.audience-nav-links.kent-bar-3-links, .kent-bar.in nav.audience-nav-links.kent-bar-4-links, .kent-bar.in nav.audience-nav-links.kent-bar-5-links, .kent-bar.in nav.audience-nav-links.kent-bar-6-links {
+        height: auto; }
       #kent-bar button.audience-menu, .kent-bar button.audience-menu {
         display: none; }
       #kent-bar.in nav.audience-nav-links, .kent-bar.in nav.audience-nav-links {
         height: auto;
         box-shadow: none;
-        border-bottom: none; }
+        border-bottom: none;
+        position: relative; }
       #kent-bar nav.audience-nav-links, .kent-bar nav.audience-nav-links {
         width: auto;
         box-shadow: none;
@@ -97,6 +100,7 @@
         float: right;
         margin-right: 20px;
         overflow: visible;
+        z-index: 100;
         position: absolute;
         top: 0;
         right: 0; }
@@ -126,13 +130,12 @@
             bottom: -18px;
             right: calc(50% - 7px);
             transform: rotate(45deg);
-            z-index: 100;
             border-top: 1px solid #ccc;
             border-left: 1px solid #ccc; } }
 
 #kent-bar #kent-bar-menu, .kent-bar #kent-bar-menu {
   position: fixed;
-  z-index: 99;
+  z-index: 100;
   width: 100vw;
   height: calc(100vh - 45px);
   background: #fff;
@@ -145,7 +148,8 @@
     text-align: center;
     padding: 0.75rem 1rem 0;
     font-weight: bold;
-    position: relative; }
+    position: relative;
+    cursor: pointer; }
     #kent-bar #kent-bar-menu .back:before, .kent-bar #kent-bar-menu .back:before {
       position: absolute;
       left: 1rem;
@@ -271,6 +275,7 @@
     margin-top: 4px; }
   @media (min-width: 768px) {
     #kent-bar #kent-bar-menu, .kent-bar #kent-bar-menu {
+      z-index: 99;
       height: auto;
       position: absolute;
       top: 55px;
