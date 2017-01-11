@@ -91,13 +91,24 @@
 			box-shadow: 1px 1px 3px #BFBFBF;
 			border-bottom: 1px solid #ccc;
 		}
+
 		button.audience-menu::before{
 			content: $kf-close;
 		}
-
 	}
 
 	@include media-breakpoint-up(md) {
+
+		&.in nav.audience-nav-links {
+			&.kent-bar-1-links,
+			&.kent-bar-2-links,
+			&.kent-bar-3-links,
+			&.kent-bar-4-links,
+			&.kent-bar-5-links,
+			&.kent-bar-6-links {
+				height: auto;
+			}
+		}
 
         height: auto;
 

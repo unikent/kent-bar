@@ -255,5 +255,7 @@ module.exports = BaseView.extend({
 
 		// Blank search string
 		this.qs.instance.target.value = "";
+		// Hide results panel
+		this.qs.instance.hideResults();
 	}
 });
