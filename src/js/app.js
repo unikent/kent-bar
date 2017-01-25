@@ -57,8 +57,8 @@ window.KENT.kentbar.components = {
 
 window.KENT.kentbar.styles = {
 	base: "/assets/main.css",
-	kentfont:"https://static-test.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css", //TODO: update to static live once kentfont updated on live
-	fonts:"https://beta.kent.ac.uk/assets/fonts/arial-light.css"
+	kentfont:"https://static.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css", //TODO: update to static live once kentfont updated on live
+	fonts:"https://beta.kent.ac.uk/pantheon/kent-theme-assets/assets/fonts/arial-light.css"
 };
 
 if (typeof window.KENT.kentbar.config === "object"){
