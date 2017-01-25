@@ -6,6 +6,8 @@
   color: #fff;
   font-family: "ArialLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 3rem; }
+  #kent-bar a[class^="kf-"], .kent-bar a[class^="kf-"] {
+    transform: translate(0px, 0px) rotate(0.001deg); }
   #kent-bar a.navbar-brand, .kent-bar a.navbar-brand {
     font-size: 1.2rem;
     padding: 12px 1em;
