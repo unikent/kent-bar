@@ -6,7 +6,7 @@
 	font-family: $font-family-sans-serif;
     height:3rem;
 
-    a[class^="kf-"] {
+    a[class^="kf-"], a[class*=" kf-"] {
     	transform: translate(0px, 0px) rotate(0.001deg);
     }
 
