@@ -61,7 +61,7 @@
 			text-decoration:none;
 			position: relative;
 
-			&::after{
+			&::after {
 				display: inline-block;
 				box-sizing: border-box;
 				padding-left: 8px;
@@ -73,12 +73,16 @@
 				position: absolute;
 				right:16px;
 			}
-			&:hover{
+			&:hover {
 				color: #00263d;
 				text-decoration: underline;
 				&::after{
 					padding-left: 11px;
 				}
+			}
+			&:focus {
+				text-decoration: underline;
+				outline: none;
 			}
 		}
 	}
