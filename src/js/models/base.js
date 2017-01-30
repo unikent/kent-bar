@@ -5,6 +5,10 @@ module.exports = Backbone.Model.extend({
 	api: api,
 
 	_parseQuickspotString: function(str){
+
+		if (typeof str != "string"){
+			return "";
+		}
 		// all lower ase
 		str = str.toLowerCase();
 		// & -> and

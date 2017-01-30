@@ -24,7 +24,7 @@ module.exports = baseModel.extend({
 
 		if (typeof response.title !== "undefined") {
 			// only have title to search on so far
-			this.__keyvalue = this._parseQuickspotString(response.title);
+			this.__keyvalue = this._parseQuickspotString(response.title) + " " + this._parseQuickspotString(response.keywords);
 			this.__searchvalues = this.__keyvalue;
 		}
 
