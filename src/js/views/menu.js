@@ -53,7 +53,13 @@ module.exports = BaseView.extend({
 			display_handler: this.renderSearchResult,
 			click_handler: this.handleSearchClick,
 			css_class_prefix: "kentbar-quickspot",
-			safeload: false
+			safeload: false,
+			no_results: function (qs, val) {
+				return '<a class=\'kentbar-quickspot-result selected\'>No results found. Search entire site...</a>';
+			},
+			no_results_click: function (value, qs) {
+				window.location.href = 'https://beta.kent.ac.uk/search/?q=' + value;
+			}
 		});
 
 		// Focus on QS input when section is opened

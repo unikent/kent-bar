@@ -3,13 +3,13 @@
 
 {{#if user}}
 <nav class="audience-nav-links" role="menu">
-	<a role="menuitem">Hi Bob</a>
+	<a role="menuitem">Hi User</a>
 </nav>
 {{else}}
 <button class="audience-menu kf-user" title="Open audience menu" aria-expanded="false"></button>
 <nav class="audience-nav-links" role="menu">
 	{{#each components}}
-	<a role="menuitem"{{#if this.url }} href="{{this.url}}"{{/if}}{{#if this.action }} data-action="{{this.action}}"{{/if}}>{{this.title}}</a>
+		<a role="menuitem" tabindex="0" aria-expanded="false" aria-controls="kent-bar-menu"{{#if this.url }} href="{{this.url}}"{{/if}}{{#if this.action }} data-action="{{this.action}}"{{/if}}>{{this.title}}</a>
 	{{/each}}
 </nav>
 {{/if}}

@@ -8,6 +8,7 @@ module.exports = BaseView.extend({
 	events: {
 		"click button.audience-menu": "mobileMenuToggle",
 		"click nav.audience-nav-links a": "menuClick",
+		"keyup nav.audience-nav-links a": "menuKeyDown",
 		"click .back" : function(){
 			this.menu.back();
 			this._clearLinkOpenStates();
@@ -37,16 +38,18 @@ module.exports = BaseView.extend({
 			this.components.push(window.KENT.kentbar.config.custom_link);
 		}
 	},
-
+	menuKeyDown: function(e){
+		if(e.keyCode == 13 || e.keyCode == 32){
+			this.menuClick(e);
+		}	
+	},
 	menuClick: function(e){
-
 		var target = e.target;
 		var menu_name = e.target.getAttribute("data-action");
 		var menu_title = e.target.innerText;
 		if (menu_name !== null) {
 			e.preventDefault();
 			this.toggleMenu(menu_name, menu_title, target);
-			e.target.setAttribute("aria-expanded", "true");
 		}
 		return false;
 	},
@@ -69,6 +72,7 @@ module.exports = BaseView.extend({
 				this.menu.on("menu:close", function (menu) {
 					that._clearLinkOpenStates();
 					helper.removeClass(that.el, "in");
+					that.el.setAttribute("aria-expanded", "false");
 					window.dispatchEvent( new CustomEvent("kentbar_menu:close", {detail: {menu: menu}}));
 				});
 				this.menu.on("menu:change", function (menu) {
@@ -78,8 +82,9 @@ module.exports = BaseView.extend({
 			}
 
 			// update clicked links
-
 			helper.addClass(trigger, "in");
+			trigger.setAttribute("aria-expanded", "true");
+
 			// toggle menu itself
 			this.menu.open(menu_name, menu_title);
 		} else {

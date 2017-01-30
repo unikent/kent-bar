@@ -61,9 +61,13 @@
         position: absolute;
         right: 16px; }
       #kent-bar nav.audience-nav-links a:hover, .kent-bar nav.audience-nav-links a:hover {
-        color: #00263d; }
+        color: #00263d;
+        text-decoration: underline; }
         #kent-bar nav.audience-nav-links a:hover::after, .kent-bar nav.audience-nav-links a:hover::after {
           padding-left: 11px; }
+      #kent-bar nav.audience-nav-links a:focus, .kent-bar nav.audience-nav-links a:focus {
+        text-decoration: underline;
+        outline: none; }
   #kent-bar.in nav.audience-nav-links, .kent-bar.in nav.audience-nav-links {
     box-shadow: 1px 1px 3px #BFBFBF;
     border-bottom: 1px solid #ccc; }
