@@ -56,7 +56,7 @@ window.KENT.kentbar.components = {
 };
 
 window.KENT.kentbar.styles = {
-	base: "/assets/main.css",
+	base: "https://static.kent.ac.uk/pantheon/static/kent-bar/main.css",
 	kentfont:"https://static.kent.ac.uk/pantheon/static/webfonts/kentfont/css/kentfont.css", //TODO: update to static live once kentfont updated on live
 	fonts:"https://beta.kent.ac.uk/pantheon/kent-theme-assets/assets/fonts/arial-light.css"
 };
