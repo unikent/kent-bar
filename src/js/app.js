@@ -89,7 +89,7 @@ var app = {
 		this.services = new ServicesCollection();
 		this.departments = new DepartmentsCollection();
 
-		document.addEventListener("DOMContentLoaded", function () {
+		var init = function () {
 			var barEl;
 
 			if (container === false) {
@@ -118,7 +118,13 @@ var app = {
 			app.departments.fetch({reset:true});
 
 			Backbone.history.start();
-		});
+		};
+
+		if (document.readyState === "complete"){
+			init();
+		}else{
+			document.addEventListener("DOMContentLoaded", init);
+		}
 	},
 	// WAT? http://stackoverflow.com/questions/29036874/style-sheets-break-with-title-attribute-on-link-tags
 	insertStylesheet : function(url, title) {
