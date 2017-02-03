@@ -16,6 +16,9 @@ module.exports = {
 			],
 			browserifyOptions: {
 				debug: true
+			},
+			postBundleCB: function (err, src, next) {
+				return next(null, '(function () { var define = undefined; '+src+' })();'); //http://stackoverflow.com/questions/25999947/how-to-solve-a-conflict-between-browserify-backbone-based-app-and-require-js-o
 			}
 		},
 		files: {
@@ -37,6 +40,9 @@ module.exports = {
 			],
 			browserifyOptions: {
 				debug: true
+			},
+			postBundleCB: function (err, src, next) {
+				return next(null, '(function () { var define = undefined; '+src+' })();')
 			}
 		},
 		files: {
@@ -55,7 +61,10 @@ module.exports = {
 					global: true,
 					verbose: true
 				}]
-			]
+			],
+			postBundleCB: function (err, src, next) {
+				return next(null, '(function () { var define = undefined; '+src+' })();')
+		   }
 		},
 		files: {
 			"build/deploy/assets/app.js": ["src/js/app.js"]
